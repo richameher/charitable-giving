@@ -1,2 +1,2 @@
 # Simplify decision making during covid crisis
-![](Viz.gif)
+![](images/Viz.gif)
