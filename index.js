@@ -18,19 +18,24 @@ svg.append("rect")
 var numrows = 6;
 var numcols = 6;
 
-//Builds a 2-D  array
-var matrix = new Array(numrows);
-for (var i = 0; i < numrows; i++) {
-  matrix[i] = new Array(numcols);
-  for (var j = 0; j < numcols; j++) {
-    if (Math.random()>0.6){
-      matrix[i][j]=1;
-    }
-    else {
-      matrix[i][j]=0;
+function build_matrix()
+{
+  var charity_matrix= new Array(numrows);
+  for (var i = 0; i < numrows; i++) {
+    charity_matrix[i] = new Array(numcols);
+    for (var j = 0; j < numcols; j++) {
+        charity_matrix[i][j]=0;
     }
   }
+  console.log("Hello");
+  d3.csv("data/charities.csv", function(dataset) {
+     dataset.forEach(function(entry){charity_matrix[entry.Region-1][entry.Cause-1]=1 });
+     console.log(charity_matrix);
+});
+return charity_matrix;
 }
+
+var matrix=build_matrix();
 
 var x = d3.scale.ordinal()
     .domain(d3.range(numcols))
@@ -49,13 +54,11 @@ console.log(newdata[1]["Rows"]);
 var rowLabels = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
   rowLabels[i] = String(newdata[i]["Rows"]);
-  console.log(newdata[i]["Rows"]);
 }
 
 var columnLabels = new Array(numrows);
 for (var i = 0; i < numcols; i++) {
   columnLabels[i] = String(newdata[i]["Columns"])
-  console.log(newdata[i]["Columns"]);
 }
 
 
