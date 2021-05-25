@@ -14,14 +14,21 @@ svg.append("rect")
     .attr("width", width)
     .attr("height", height);
 
+//TO-DO: numrows and cols suppose to come with number of regions and causes, it can be hardcoded for now
 var numrows = 6;
 var numcols = 6;
 
+//Builds a 2-D  array
 var matrix = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
   matrix[i] = new Array(numcols);
   for (var j = 0; j < numcols; j++) {
-    matrix[i][j] = Math.random()*2 - 1;
+    if (Math.random()>0.6){
+      matrix[i][j]=1;
+    }
+    else {
+      matrix[i][j]=0;
+    }
   }
 }
 
@@ -53,25 +60,27 @@ for (var i = 0; i < numcols; i++) {
 
 
 var colorMap = d3.scale.linear()
-    .domain([-1, 0, 1])
-    .range(["red", "white", "blue"]);
+    .domain([1,0])
+    .range(["red", "white"]);
     //.range(["red", "black", "green"]);
     //.range(["brown", "#ddd", "darkgreen"]);
 
 var row = svg.selectAll(".row")
-    .data(matrix)
+    .data(rowLabels)
   .enter().append("g")
     .attr("class", "row")
     .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
 row.selectAll(".cell")
     .data(function(d) { return d; })
+    .data(matrix)
   .enter().append("rect")
     .attr("class", "cell")
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand())
-    .style("stroke-width", 0);
+    .style("stroke-width", 7)
+    .attr("style", "outline: thin solid black;");
 
 row.append("line")
     .attr("x2", width);
@@ -99,9 +108,28 @@ column.append("text")
     .attr("text-anchor", "start")
     .text(function(d, i) { return d; });
 
-row.selectAll(".cell")
+var cells=row.selectAll(".cell")
     .data(function(d, i) { return matrix[i]; })
     .style("fill", colorMap);
+
+    cells.on('mouseover', function() {
+                    d3.select(this)
+                        .style('fill', "grey");
+                 })
+                 .on('mouseout', function() {
+                    d3.select(this)
+                        .style('fill', colorMap);
+                 })
+                 .on('click', function() {
+                    console.log(d3.select(this));
+                    window.open(
+      'charitycards.html','_self'
+      // '_blank' // <- This is what makes it open in a new window.
+    );
+                 })
+                 .style("fill", colorMap)
+                 .style("stroke", '#555');
+console.log(matrix);
 });
 
 //Referenced from - https://gist.github.com/srosenthal/2770072
