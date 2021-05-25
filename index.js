@@ -40,6 +40,7 @@ var y = d3.scale.ordinal()
     .domain(d3.range(numrows))
     .rangeBands([0, height]);
 
+
 d3.csv("data/rowscol_label.csv", function(dataset) {
 
 var newdata=dataset;
@@ -71,6 +72,16 @@ var row = svg.selectAll(".row")
     .attr("class", "row")
     .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
+    row.append("line")
+        .attr("x2", width);
+
+    row.append("text")
+        .attr("x", 0)
+        .attr("y", y.rangeBand() / 2)
+        .attr("dy", ".32em")
+        .attr("text-anchor", "end")
+        .text(function(d, i) { return d; });
+
 row.selectAll(".cell")
     .data(function(d) { return d; })
     .data(matrix)
@@ -82,15 +93,6 @@ row.selectAll(".cell")
     .style("stroke-width", 7)
     .attr("style", "outline: thin solid black;");
 
-row.append("line")
-    .attr("x2", width);
-
-row.append("text")
-    .attr("x", 0)
-    .attr("y", y.rangeBand() / 2)
-    .attr("dy", ".32em")
-    .attr("text-anchor", "end")
-    .text(function(d, i) { return i; });
 
 var column = svg.selectAll(".column")
     .data(columnLabels)
