@@ -1,7 +1,31 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en" dir="ltr">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>XML http request</title>
+      <script>
+        function getInputValue() {
+        // Selecting the input element and get its value
+        let inputVal = document.getElementById("usernameInput").value;
+        // Displaying the value
+        let inputVal1 = ("https://logo.clearbit.com/"+inputVal+"");
+        document.getElementById("image").src = inputVal1
+// inputVal
+      }
+      </script>
+    </head>
 
-<script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
-<body>
-</body>
-<script src="index.js"></script>
+  <body>
+    <img id="image" src="">
+
+
+
+  <br><br>
+
+  <input type="text" id="usernameInput">
+
+  <button onclick="getInputValue()">Get profile photo</button>
+  </body>
+</html>
