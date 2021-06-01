@@ -30,16 +30,25 @@ function dragCircle(dataSource) {
     updatePath();
 }
 
-function updatetext(fontsize){
+function updatetext(fontsizes){
 
-svg.selectAll('text')
+svg.selectAll('#textelement1')
      .attr('text-anchor', 'middle')
-     // .attr('font-size',0 )
-     // .transition()
-     // .duration(10)
-     .attr('font-size',fontsize )
+     .attr('font-size',fontsizes[0] )
      .attr("class", "myLabel")//easy to style with CSS
      .text("Charity1");
+
+svg.selectAll('#textelement2')
+      .attr('text-anchor', 'middle')
+      .attr('font-size',fontsizes[1] )
+      .attr("class", "myLabel")//easy to style with CSS
+      .text("Charity2");
+
+svg.selectAll('#textelement3')
+     .attr('text-anchor', 'middle')
+     .attr('font-size',fontsizes[2] )
+     .attr("class", "myLabel")//easy to style with CSS
+     .text("Charity3");
 
 }
 function updatePath(){
@@ -76,8 +85,8 @@ function updatePath(){
     console.log(l3_dist);
     var ratios=get_ratios(l1_dist,l2_dist,l3_dist);
     console.log(ratios);
-    var fontsize=100*ratios[0];
-    updatetext(fontsize);
+    var fontsizes=[100*ratios[0],100*ratios[1],100*ratios[2]];
+    updatetext(fontsizes);
 
     path.attr('d', lineFunction(l1))
     .attr('stroke','blue');
@@ -94,7 +103,7 @@ function get_ratios(dist1,dist2,dist3)
 var total=dist1+dist2+dist3;
 var frac1=1-(dist1/total);
 var frac2=1-(dist2/total);
-var frac3=1-(dist2/total);
+var frac3=1-(dist3/total);
 console.log(frac1,frac2,frac3);
 return [frac1,frac2,frac3];
 
@@ -123,12 +132,31 @@ data[2] = { x: init[0]-200, y: init[1] };
 updatePath();
 updateCircle();
 svg.append("text")
+   .attr('id','textelement1')
    .attr("y", data[1].y+20)//magic number here
    .attr("x", data[1].x)
    .attr('text-anchor', 'middle')
    .attr('font-size',33 )
    .attr("class", "myLabel")//easy to style with CSS
    .text("Charity1");
+
+svg.append("text")
+  .attr('id','textelement2')
+  .attr("y", data[2].y-20)//magic number here
+  .attr("x", data[2].x+20)
+  .attr('text-anchor', 'middle')
+  .attr('font-size',33 )
+  .attr("class", "myLabel")//easy to style with CSS
+  .text("Charity2");
+
+svg.append("text")
+  .attr('id','textelement3')
+  .attr("y", data[3].y-20)//magic number here
+  .attr("x", data[3].x+20)
+  .attr('text-anchor', 'middle')
+  .attr('font-size',33 )
+  .attr("class", "myLabel")//easy to style with CSS
+  .text("Charity3");
 
 svg.on('mousedown', function(){
     var m = d3.mouse(this);
