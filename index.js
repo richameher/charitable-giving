@@ -155,9 +155,10 @@ var cells=row.selectAll(".cell")
                          region=0;
                        }
                        console.log(i,region);
-
+                       if (d==1)
+                       {
                        window.open("charitycards.html",'_self');
-
+                     }
                        sessionStorage.setItem("region", region);
                        sessionStorage.setItem("cause", i);
                        // w.element="Hello";
