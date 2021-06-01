@@ -15,8 +15,8 @@ svg.append("rect")
     .attr("height", height);
 
 //TO-DO: numrows and cols suppose to come with number of regions and causes, it can be hardcoded for now
-var numrows = 6;
-var numcols = 6;
+var numrows = 3;
+var numcols = 3;
 
 function build_matrix()
 {
@@ -29,13 +29,16 @@ function build_matrix()
   }
   console.log("Hello");
   d3.csv("data/charities.csv", function(dataset) {
-     dataset.forEach(function(entry){charity_matrix[entry.Region-1][entry.Cause-1]=1 });
+
+     dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
+     dataset.forEach(function(entry){charity_matrix[entry.region][entry.Cause]=1 });
      console.log(charity_matrix);
 });
 return charity_matrix;
 }
 
 var matrix=build_matrix();
+console.log(matrix[0][1]);
 
 var x = d3.scale.ordinal()
     .domain(d3.range(numcols))
@@ -49,11 +52,12 @@ var y = d3.scale.ordinal()
 d3.csv("data/rowscol_label.csv", function(dataset) {
 
 var newdata=dataset;
-console.log(newdata[1]["Rows"]);
+console.log(newdata);
 
 var rowLabels = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
   rowLabels[i] = String(newdata[i]["Rows"]);
+
 }
 
 var columnLabels = new Array(numrows);
@@ -86,15 +90,20 @@ var row = svg.selectAll(".row")
         .text(function(d, i) { return d; });
 
 row.selectAll(".cell")
-    .data(function(d) { return d; })
     .data(matrix)
   .enter().append("rect")
     .attr("class", "cell")
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand())
-    .style("stroke-width", 7)
-    .attr("style", "outline: thin solid black;");
+    .style("stroke-width", 100)
+    .attr("style", "outline: thin solid black;")
+    .append("text")
+            .text(function(d,i) {
+                console.log(d);
+                console.log(i);
+                // return d.value;
+            });
 
 
 var column = svg.selectAll(".column")
@@ -112,9 +121,9 @@ column.append("text")
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
     .text(function(d, i) { return d; });
-
+var w;
 var cells=row.selectAll(".cell")
-    .data(function(d, i) { return matrix[i]; })
+    .data(function(d, i) { return matrix[i]; console.log(d,i);})
     .style("fill", colorMap);
 
     cells.on('mouseover', function() {
@@ -125,12 +134,30 @@ var cells=row.selectAll(".cell")
                     d3.select(this)
                         .style('fill', colorMap);
                  })
-                 .on('click', function() {
-                    console.log(d3.select(this));
-                    window.open(
-      'charitycards.html','_self'
-      // '_blank' // <- This is what makes it open in a new window.
-    );
+                 .on('click', function(d,i) {
+                     if (d3.select(this.parentNode).datum()=="North")
+                     {
+                        region=1;
+
+                      }
+                      else if (d3.select(this.parentNode).datum()=="Central")
+                      {
+                         region=2;
+
+                       }
+                       else {
+                         region=0;
+                       }
+                       console.log(i,region);
+
+                       window.open("charitycards.html",'_self');
+
+                       sessionStorage.setItem("region", region);
+                       sessionStorage.setItem("cause", i);
+                       // w.element="Hello";
+
+                       // w = window.open('charitycards.html','_self');
+                       // w.myVariable = thisIsAnObject;
                  })
                  .style("fill", colorMap)
                  .style("stroke", '#555');
