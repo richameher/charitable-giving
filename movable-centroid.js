@@ -1,4 +1,4 @@
-var svg = d3.select("body").append("svg").attr({ width: 500, height: 500 }),
+var svg = d3.select("body").append("svg").attr({ width: 1200, height: 800 }),
     data = [],
     lineFunction = d3.svg.line()
         .x(function (data) {
@@ -7,7 +7,7 @@ var svg = d3.select("body").append("svg").attr({ width: 500, height: 500 }),
         .y(function (data) {
             return data.y;
         }),
-    path,path1,path2, isDown = false, count=0;
+    path,path1,path2, isDown = false, count=0, l1_dist=0,l2_dist=0,l3_dist=0;
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
     dragC = d3.behavior.drag().on('drag', dragCircle);
@@ -30,6 +30,18 @@ function dragCircle(dataSource) {
     updatePath();
 }
 
+function updatetext(fontsize){
+
+svg.selectAll('text')
+     .attr('text-anchor', 'middle')
+     // .attr('font-size',0 )
+     // .transition()
+     // .duration(10)
+     .attr('font-size',fontsize )
+     .attr("class", "myLabel")//easy to style with CSS
+     .text("Charity1");
+
+}
 function updatePath(){
     if(!path){
         path = svg.append('path');
@@ -45,14 +57,27 @@ function updatePath(){
     var l1=[];
     l1[0]=data[0];
     l1[1]=data[1];
+    l1_dist=calculate_dist(l1);
+    console.log("L1");
+    console.log(l1_dist);
 
     var l2=[];
     l2[0]=data[0];
     l2[1]=data[2];
+    console.log("L2");
+    l2_dist=calculate_dist(l2);
+    console.log(l2_dist);
 
     var l3=[];
     l3[0]=data[0];
     l3[1]=data[3];
+    console.log("L3");
+    l3_dist=calculate_dist(l3);
+    console.log(l3_dist);
+    var ratios=get_ratios(l1_dist,l2_dist,l3_dist);
+    console.log(ratios);
+    var fontsize=100*ratios[0];
+    updatetext(fontsize);
 
     path.attr('d', lineFunction(l1))
     .attr('stroke','blue');
@@ -64,6 +89,21 @@ function updatePath(){
     .attr('stroke','blue');
 }
 
+function get_ratios(dist1,dist2,dist3)
+{
+var total=dist1+dist2+dist3;
+var frac1=1-(dist1/total);
+var frac2=1-(dist2/total);
+var frac3=1-(dist2/total);
+console.log(frac1,frac2,frac3);
+return [frac1,frac2,frac3];
+
+}
+function calculate_dist(arr){
+  var xDiff = arr[0].x - arr[1].x;
+  var yDiff = arr[0].y  - arr[1].y;
+  return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+}
 function updateCircle(){
 
     circle = svg.selectAll('circle').data(data);
@@ -75,13 +115,20 @@ function updateCircle(){
 
 var init=[270,165];
 var centrx= (init[0]+init[0]+init[0])/3;
-var centry= (init[1]+init[1]+init[1]+100)/3;
+var centry= (init[1]+init[1]+init[1]+200)/3;
 data[0] = { x: centrx, y: centry };
-data[3] = { x: init[0], y: init[1]+100 };
-data[1] = { x: init[0]+100, y: init[1] };
-data[2] = { x: init[0]-100, y: init[1] };
+data[3] = { x: init[0], y: init[1]+200 };
+data[1] = { x: init[0]+200, y: init[1] };
+data[2] = { x: init[0]-200, y: init[1] };
 updatePath();
 updateCircle();
+svg.append("text")
+   .attr("y", data[1].y+20)//magic number here
+   .attr("x", data[1].x)
+   .attr('text-anchor', 'middle')
+   .attr('font-size',33 )
+   .attr("class", "myLabel")//easy to style with CSS
+   .text("Charity1");
 
 svg.on('mousedown', function(){
     var m = d3.mouse(this);
