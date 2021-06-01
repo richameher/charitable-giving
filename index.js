@@ -1,6 +1,6 @@
 var margin = {top: 400, right: 200, bottom: 100, left: 200},
-    width = 384,
-    height = 256;
+    width = 800,
+    height = 400;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -69,7 +69,7 @@ for (var i = 0; i < numcols; i++) {
 
 var colorMap = d3.scale.linear()
     .domain([1,0])
-    .range(["red", "white"]);
+    .range(["#20639B", "white"]);
     //.range(["red", "black", "green"]);
     //.range(["brown", "#ddd", "darkgreen"]);
 
@@ -87,6 +87,7 @@ var row = svg.selectAll(".row")
         .attr("y", y.rangeBand() / 2)
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
+        .style("font-size", "30px")
         .text(function(d, i) { return d; });
 
 row.selectAll(".cell")
@@ -117,18 +118,23 @@ column.append("line")
 
 column.append("text")
     .attr("x", 6)
-    .attr("y", y.rangeBand() / 2)
+    .attr("y", -20)
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
+    .style("font-size", "30px")
+    .attr("transform", "rotate(90)")
     .text(function(d, i) { return d; });
 var w;
 var cells=row.selectAll(".cell")
     .data(function(d, i) { return matrix[i]; console.log(d,i);})
     .style("fill", colorMap);
 
-    cells.on('mouseover', function() {
-                    d3.select(this)
-                        .style('fill', "grey");
+    cells.on('mouseover', function(d,i) {
+
+                if (d==1)
+                {
+                 d3.select(this)
+                        .style('fill', "#3CAEA3");}
                  })
                  .on('mouseout', function() {
                     d3.select(this)
@@ -161,6 +167,7 @@ var cells=row.selectAll(".cell")
                  })
                  .style("fill", colorMap)
                  .style("stroke", '#555');
+
 console.log(matrix);
 });
 
