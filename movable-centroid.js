@@ -30,25 +30,30 @@ function dragCircle(dataSource) {
     updatePath();
 }
 
-function updatetext(fontsizes){
+function updatetext(fontsizes,ratios){
 
+var number1=1000*(ratios[0]);
+var number2=1000*(ratios[1]);
+var number3=1000*(ratios[2]);
+
+console.log(fontsizes);
 svg.selectAll('#textelement1')
      .attr('text-anchor', 'middle')
      .attr('font-size',fontsizes[0] )
      .attr("class", "myLabel")//easy to style with CSS
-     .text("Charity1");
+     .text("Charity1 Rs"+parseInt(number1));
 
 svg.selectAll('#textelement2')
       .attr('text-anchor', 'middle')
       .attr('font-size',fontsizes[1] )
       .attr("class", "myLabel")//easy to style with CSS
-      .text("Charity2");
+      .text("Charity2 Rs"+parseInt(number2));
 
 svg.selectAll('#textelement3')
      .attr('text-anchor', 'middle')
      .attr('font-size',fontsizes[2] )
      .attr("class", "myLabel")//easy to style with CSS
-     .text("Charity3");
+     .text("Charity3 Rs"+ parseInt(number3));
 
 }
 function updatePath(){
@@ -85,8 +90,8 @@ function updatePath(){
     console.log(l3_dist);
     var ratios=get_ratios(l1_dist,l2_dist,l3_dist);
     console.log(ratios);
-    var fontsizes=[100*ratios[0],100*ratios[1],100*ratios[2]];
-    updatetext(fontsizes);
+    var fontsizes=[100*(ratios[0]),100*(ratios[1]),100*(ratios[2])];
+    updatetext(fontsizes,ratios);
 
     path.attr('d', lineFunction(l1))
     .attr('stroke','blue');
@@ -100,10 +105,10 @@ function updatePath(){
 
 function get_ratios(dist1,dist2,dist3)
 {
-var total=dist1+dist2+dist3;
-var frac1=1-(dist1/total);
-var frac2=1-(dist2/total);
-var frac3=1-(dist3/total);
+var total=(1/dist1)+(1/dist2)+(1/dist3);
+var frac1=((1/dist1)/total);
+var frac2=((1/dist2)/total);
+var frac3=((1/dist3)/total);
 console.log(frac1,frac2,frac3);
 return [frac1,frac2,frac3];
 
