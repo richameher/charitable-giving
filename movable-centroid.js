@@ -1,4 +1,5 @@
 
+d3.csv("data/charities.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var number_charities=Object.keys(active_charities).length;
 
@@ -11,7 +12,20 @@ var svg = d3.select("body").append("svg").attr({ width: 1200, height: 1000 }),
         .y(function (data) {
             return data.y;
         }),
-    paths=[],path,path1,path2, isDown = false, count=0, l1_dist=0,l2_dist=0,l3_dist=0;
+     paths=[],path,path1,path2, isDown = false, count=0, l1_dist=0,l2_dist=0,l3_dist=0;
+
+let char_names=[];
+
+  var newdata=[]
+  for (var key in active_charities) {
+      if (active_charities.hasOwnProperty(key)) {
+        newdata.push(dataset[key-1]["Name"]);
+        }
+      }
+  for (var i = 0; i < number_charities; i++) {
+    char_names[i]=newdata[i];
+}
+
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
     dragC = d3.behavior.drag().on('drag', dragCircle);
@@ -37,18 +51,18 @@ function dragCircle(dataSource) {
 function updatetext(fontsizes,ratios){
 
 var numbers=[];
+
 for (var i = 0; i < number_charities; i++) {
   numbers[i]=1000*(ratios[i]);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
        .attr('font-size',fontsizes[i] )
        .attr("class", "myLabel")//easy to style with CSS
-       .text("Charity"+(i+1)+"Rs"+parseInt(numbers[i]));
+       .text(char_names[i]+" Rs"+parseInt(numbers[i]));
   }
 
 }
 function updatePath(){
-
 
     for (var i = 0; i <= number_charities; i++) {
     if(!paths[i]){
@@ -57,14 +71,12 @@ function updatePath(){
   }
 
     var ldist=[];
-    console.log("Push ldist",ldist);
     var l3_dist=[];
     for (var i = 1; i <= number_charities; i++) {
     var l3=[];
     l3[0]=data[0];
     l3[1]=data[i];
     ldist.push(l3);
-    console.log("Push ldist",ldist);
     l3_dist.push(calculate_dist(l3));
 
   }
@@ -72,7 +84,6 @@ function updatePath(){
     var fontsizes=[]
     console.log("Ratios",ratios);
     for (var i = 0; i < number_charities; i++) {
-    // var fontsizes=[100*(ratios[0]),100*(ratios[1]),100*(ratios[2])];
     fontsizes[i]=100*ratios[i];
   }
     updatetext(fontsizes,ratios);
@@ -94,7 +105,6 @@ var total=0;
 for (var i = 0; i < number_charities; i++) {
   total=total+(1/l3_dist[i]);
 }
-console.log("Total",total);
 for (var i = 0; i < number_charities; i++) {
 fract[i]=((1/l3_dist[i])/total);;
 }
@@ -118,8 +128,7 @@ function updateCircle(){
 
 var init=[200,10];
 
-
-
+function start(){
 if (number_charities==3) {
   data[3] = { x: init[0]-100, y: init[1]+100 };
   data[1] = { x: init[0]+273, y: init[1]+732 };
@@ -129,15 +138,14 @@ if (number_charities==3) {
   data[0] = { x: centrx, y: centry };
 
 for (var i = 1; i <= number_charities; i++) {
-  // text += cars[i] + "<br>";
   svg.append("text")
      .attr('id','textelement'+i)
      .attr("y", data[i].y-20)//magic number here
      .attr("x", data[i].x+20)
      .attr('text-anchor', 'middle')
      .attr('font-size',33 )
-     .attr("class", "myLabel")//easy to style with CSS
-     .text("Charity"+i);
+     .attr("class", "myLabel")
+     .text(char_names[i-1]);
 }
 }
 else if(number_charities==2){
@@ -155,7 +163,7 @@ else if(number_charities==2){
      .attr('text-anchor', 'middle')
      .attr('font-size',33 )
      .attr("class", "myLabel")//easy to style with CSS
-     .text("Charity"+i);
+     .text(char_names[i-1]);
 
 }
 }
@@ -176,13 +184,18 @@ else if(number_charities==4){
      .attr('text-anchor', 'middle')
      .attr('font-size',33 )
      .attr("class", "myLabel")//easy to style with CSS
-     .text("Charity"+i);
+     .text(char_names[i-1]);
 
 }
 }
+}
+
+start();
 updatePath();
 updateCircle();
+
 svg.on('mousedown', function(){
+    d3.selectAll('.centroid').attr('r',30);
     var m = d3.mouse(this);
     if(!count){
         if(!isDown){
@@ -193,7 +206,7 @@ svg.on('mousedown', function(){
         } else {
             updateCircle();
             console.log(data);
-            d3.selectAll('.centroid').attr('r',30);
+
             d3.selectAll('.centroid').call(dragC);
             paths[0].call(dragP);
             path1.call(dragP);
@@ -203,4 +216,6 @@ svg.on('mousedown', function(){
         }
     }
     isDown = !isDown;
+});
+
 });

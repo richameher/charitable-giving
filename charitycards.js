@@ -63,13 +63,13 @@ d3.csv("data/charities.csv", function(dataset) {
     {
       d3.select(this).attr('class', "active");
       console.log(d3.select(this).attr('id'));
-      var name='charityid'+(d3.select(this).attr('id'));
+      var name=(d3.select(this).attr('id'));
       active_charities[name]=1;
       console.log(active_charities);
   }
   else {
     d3.select(this).attr('class', "inactive");
-    var name='charityid'+(d3.select(this).attr('id'));
+    var name=(d3.select(this).attr('id'));
     delete active_charities[name];
     console.log(active_charities);
   }
