@@ -1,6 +1,7 @@
 d3.csv("data/charities.csv", function(dataset) {
 
   var newdata=dataset;
+  var active_charities={};
   console.log(sessionStorage.getItem("region"));
   console.log(sessionStorage.getItem("cause"));
   var region=sessionStorage.getItem("region");
@@ -30,6 +31,7 @@ d3.csv("data/charities.csv", function(dataset) {
 
     var card = document.createElement("div");
     card.classList.add("card");
+    card.setAttribute('id',newdata[i]["charityid"])
 
 
     var h3=document.createElement("h3");
@@ -46,11 +48,33 @@ d3.csv("data/charities.csv", function(dataset) {
     card.appendChild(p);
     card.appendChild(p1);
 
-
+    // card.setAttribute('class','inactive');
+    console.log(card);
     column.appendChild(card);
 
     var element=document.getElementById("row");
     element.appendChild(column);
-}
   }
+}
+  d3.selectAll('div.card')
+  .on('mousedown',function(){
+    console.log(d3.select(this));
+    if (d3.select(this).attr('class') !='active')
+    {
+      d3.select(this).attr('class', "active");
+      console.log(d3.select(this).attr('id'));
+      var name='charityid'+(d3.select(this).attr('id'));
+      active_charities[name]=1;
+      console.log(active_charities);
+  }
+  else {
+    d3.select(this).attr('class', "inactive");
+    var name='charityid'+(d3.select(this).attr('id'));
+    delete active_charities[name];
+    console.log(active_charities);
+  }
+  });
+
+  sessionStorage.setItem("SelectedCharities",active_charities );
+
 });
