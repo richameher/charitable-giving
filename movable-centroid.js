@@ -3,7 +3,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var number_charities=Object.keys(active_charities).length;
 
-var svg = d3.select("body").append("svg").attr({ width: 1200, height: 1000 }),
+var svg = d3.select("body").append("svg").attr({ width: 2400, height: 1000 }),
     data = [],
     lineFunction = d3.svg.line()
         .x(function (data) {
@@ -126,7 +126,7 @@ function updateCircle(){
           .attr('cy', function(d) { return d.y; });
 }
 
-var init=[200,10];
+var init=[600,10];
 
 function start(){
 if (number_charities==3) {
