@@ -75,6 +75,12 @@ d3.csv("data/charities.csv", function(dataset) {
   }
   });
 
-  sessionStorage.setItem("SelectedCharities",active_charities );
+ d3.selectAll('button')
+ .on('mousedown',function(){
+   console.log("cLicked");
+   console.log(JSON.stringify(active_charities));
+   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
+   window.open("Polygondistrib.html",'_self');
+ });
 
 });

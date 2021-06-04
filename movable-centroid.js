@@ -1,3 +1,7 @@
+
+var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
+var number_charities=Object.keys(active_charities).length;
+
 var svg = d3.select("body").append("svg").attr({ width: 1200, height: 800 }),
     data = [],
     lineFunction = d3.svg.line()
