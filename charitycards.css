@@ -1,24 +1,40 @@
 .card {
-  /* Add shadows to create the "card" effect */
-  /* position:relative;
-
-  /* transition: 0.3s; */
-  /* height:300px;
-  width: 800px; */
- flex: 1 0 20%;
- position: relative;
- margin: .5em;
- padding: 2em;
- min-height: 4em;
- background: white;
+  flex: 1 0 20%;
+  position: relative;
+  margin: .5em;
+  padding: 2em;
+  min-height: 4em;
+  background: white;
+ box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
  border: 3px solid white;
-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ /* width: 50%; */
 }
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
 }
+
+img {
+  max-width: 80%;
+  height: auto;
+  padding: 10px;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 
 .active {
   flex: 1 0 20%;
@@ -27,8 +43,8 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2em;
   min-height: 4em;
   background: white;
-box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-border: 3px solid grey;
+ box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+ border: 3px solid grey;
 }
 
 .inactive {
@@ -38,8 +54,8 @@ border: 3px solid grey;
   padding: 2em;
   min-height: 4em;
   background: white;
-box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-border: 3px solid white;
+ box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+ border: 3px solid white;
 }
 
 .button {
