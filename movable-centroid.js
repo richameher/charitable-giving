@@ -1,5 +1,5 @@
 
-d3.csv("data/charities.csv", function(dataset) {
+d3.csv("data/charities_list_clean.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var number_charities=Object.keys(active_charities).length;
 

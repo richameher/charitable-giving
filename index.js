@@ -28,7 +28,7 @@ function build_matrix()
     }
   }
   console.log("Hello");
-  d3.csv("data/charities.csv", function(dataset) {
+  d3.csv("data/charities_list_clean.csv", function(dataset) {
 
      dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
      dataset.forEach(function(entry){charity_matrix[entry.region][entry.Cause]=1 });

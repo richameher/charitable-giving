@@ -1,13 +1,13 @@
-charityid,region,Cause,Name,description,web_link
-1,2,1,HemKunt,Foundation helpful,hemkuntfoundation.com
-2,1,2,khaanachahiye,Desc2,www.khaanachahiye.com
-3,0,1,Charity3,Desc3,hemkuntfoundation.com
-4,1,0,Charity4,Desc4,www.khaanachahiye.com
-5,2,1,Charity5,Desc5,hemkuntfoundation.com
-6,2,2,Charity6,Desc6,www.khaanachahiye.com
-7,2,1,HemKunt,Foundation helpful,hemkuntfoundation.com
-8,1,2,khaanachahiye,Desc2,www.khaanachahiye.com
-9,0,1,Charity9,Desc3,hemkuntfoundation.com
-10,1,0,Charity10,Desc4,www.khaanachahiye.com
-11,2,1,Charity11,Desc5,hemkuntfoundation.com
-12,2,2,Charity12,Desc6,www.khaanachahiye.com
+imgid,charityid,region,Cause,Name,description,web_link
+1,1,2,1,HemKunt,Foundation helpful,hemkuntfoundation.com
+4,2,1,2,khaanachahiye,Desc2,www.khaanachahiye.com
+4,3,0,1,Charity3,Desc3,hemkuntfoundation.com
+3,4,1,0,Charity4,Desc4,www.khaanachahiye.com
+4,5,2,1,Charity5,Desc5,hemkuntfoundation.com
+5,6,2,2,Charity6,Desc6,www.khaanachahiye.com
+5,7,2,1,HemKunt,Foundation helpful,hemkuntfoundation.com
+6,8,1,2,khaanachahiye,Desc2,www.khaanachahiye.com
+6,9,0,1,Charity9,Desc3,hemkuntfoundation.com
+6,10,1,0,Charity10,Desc4,www.khaanachahiye.com
+6,11,2,1,Charity11,Desc5,hemkuntfoundation.com
+8,12,2,2,Charity12,Desc6,www.khaanachahiye.com

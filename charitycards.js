@@ -1,4 +1,4 @@
-d3.csv("data/charities.csv", function(dataset) {
+d3.csv("data/charities_list_clean.csv", function(dataset) {
 
   var newdata=dataset;
   var active_charities={};
@@ -19,7 +19,9 @@ d3.csv("data/charities.csv", function(dataset) {
 
     var cause = document.createTextNode(newdata[i]["Cause"]);
 
-    let getcharitylink = ("https://logo.clearbit.com/"+newdata[i]["web_link"]+"");
+    // let getcharitylink = ("https://logo.clearbit.com/"+newdata[i]["web_link"]+"");
+    let getcharitylink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
+    console.log(getcharitylink);
     // console.log(getcharitylink);
     var image = document.createElement("IMG");
     image.setAttribute("src", getcharitylink);
