@@ -1,10 +1,13 @@
+function load_charity()
+{
+d3.selectAll('div.column').remove();
 d3.csv("data/charities_list_clean.csv", function(dataset) {
 
   var newdata=dataset;
   var active_charities={};
-  console.log(sessionStorage.getItem("region"));
+  console.log(sessionStorage.getItem("regioninfo"));
   console.log(sessionStorage.getItem("cause"));
-  var region=sessionStorage.getItem("region");
+  var region=sessionStorage.getItem("regioninfo");
   var causes=sessionStorage.getItem("cause");
 
   for (i = 0; i < newdata.length; i++) {
@@ -22,11 +25,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     // let getcharitylink = ("https://logo.clearbit.com/"+newdata[i]["web_link"]+"");
     let getcharitylink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     console.log(getcharitylink);
-    // console.log(getcharitylink);
     var image = document.createElement("IMG");
     image.setAttribute("src", getcharitylink);
-    image.setAttribute("alt", "Avatar");
-    // image.setAttribute("style", "width:20%");
 
     var column = document.createElement("div");
     column.classList.add("column");
@@ -42,15 +42,10 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var p=document.createElement("p");
     p.appendChild(desc);
 
-    // var p1=document.createElement("p");
-    // p1.appendChild(cause);
-
     card.appendChild(image);
     card.appendChild(h3);
     card.appendChild(p);
-    // card.appendChild(p1);
 
-    // card.setAttribute('class','inactive');
     console.log(card);
     column.appendChild(card);
 
@@ -68,6 +63,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
       var name=(d3.select(this).attr('id'));
       active_charities[name]=1;
       console.log(active_charities);
+
+
   }
   else {
     d3.select(this).attr('class', "inactive");
@@ -75,14 +72,9 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     delete active_charities[name];
     console.log(active_charities);
   }
+  sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
+  load_polygon();
   });
 
- d3.selectAll('button')
- .on('mousedown',function(){
-   console.log("cLicked");
-   console.log(JSON.stringify(active_charities));
-   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
-   window.open("Polygondistrib.html",'_self');
- });
-
 });
+}

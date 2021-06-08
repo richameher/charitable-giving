@@ -1,8 +1,8 @@
-var margin = {top: 400, right: 200, bottom: 100, left: 200},
-    width = 800,
-    height = 400;
+var margin = {top: 40, right: 50, bottom: 50, left: 100},
+    width = 600,
+    height = 300;
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#matrix").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     // .style("margin-left", -margin.left + "px")
@@ -141,30 +141,31 @@ var cells=row.selectAll(".cell")
                         .style('fill', colorMap);
                  })
                  .on('click', function(d,i) {
+                     var regioninfo;
                      if (d3.select(this.parentNode).datum()=="North")
                      {
-                        region=1;
+                        regioninfo=1;
 
                       }
                       else if (d3.select(this.parentNode).datum()=="Central")
                       {
-                         region=2;
+                         regioninfo=2;
 
                        }
                        else {
-                         region=0;
+                         regioninfo=0;
                        }
-                       console.log(i,region);
+                       console.log(i,regioninfo);
                        if (d==1)
                        {
-                       window.open("charitycards.html",'_self');
-                     }
-                       sessionStorage.setItem("region", region);
+                       sessionStorage.setItem("regioninfo", regioninfo);
                        sessionStorage.setItem("cause", i);
-                       // w.element="Hello";
+                       // window.open("index.html",'_self');
+                       load_charity();
+                       remove_polygon();
 
-                       // w = window.open('charitycards.html','_self');
-                       // w.myVariable = thisIsAnObject;
+                        }
+                  
                  })
                  .style("fill", colorMap)
                  .style("stroke", '#555');

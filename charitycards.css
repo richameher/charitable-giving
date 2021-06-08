@@ -1,12 +1,14 @@
 .card {
-  flex: 1 0 20%;
-  position: relative;
+  /* flex: 1 0 20%; */
+  /* position: relative; */
   margin: .5em;
   padding: 2em;
   min-height: 4em;
   background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+  border: 3px solid white;
+  height:500px;
+
  /* width: 50%; */
 }
 
@@ -16,7 +18,7 @@
 }
 
 img {
-  max-width: 80%;
+  width: 50%;
   height: auto;
   padding: 10px;
 }
@@ -24,6 +26,7 @@ img {
   float: left;
   width: 25%;
   padding: 0 10px;
+  height: 100%;
 }
 /* Remove extra left and right margins, due to padding */
 .row {margin: 0 -5px;}
@@ -33,22 +36,12 @@ img {
   content: "";
   display: table;
   clear: both;
+  height: 100%;
 }
 
 
 .active {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid grey;
-}
-
-.inactive {
-  flex: 1 0 20%;
+  /* flex: 1 0 40%;
   position: relative;
   margin: .5em;
   padding: 2em;
@@ -56,6 +49,33 @@ img {
   background: white;
  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
  border: 3px solid white;
+ height: 100%; */
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 40px 40px 0 rgba(1,1,1,0.2);
+ border: 3px solid gray;
+ height:500px;
+}
+
+.inactive {
+  /* flex: 1 0 20%;
+  position: relative;
+  margin: .5em;
+  padding: 2em;
+  min-height: 4em;
+  background: white;
+ box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+ border: 3px solid white;
+ height: 100%; */
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+ border: 3px solid white;
+ height:500px;
 }
 
 .button {
