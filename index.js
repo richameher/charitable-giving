@@ -18,6 +18,7 @@ svg.append("rect")
 var numrows = 3;
 var numcols = 3;
 
+
 function build_matrix()
 {
   var charity_matrix= new Array(numrows);
@@ -165,7 +166,7 @@ var cells=row.selectAll(".cell")
                        remove_polygon();
 
                         }
-                  
+
                  })
                  .style("fill", colorMap)
                  .style("stroke", '#555');

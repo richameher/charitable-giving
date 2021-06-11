@@ -4,9 +4,6 @@
 <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
 <link rel="stylesheet" href="charitycards.css">
 <link rel="stylesheet" href="index.css">
-<script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
-<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
 <head>
   <h1> Decide to Donate</h1>
@@ -21,17 +18,28 @@
   </div>
 </div>
 <div class='container-vertical' style="display: flex;">
+  <div id='wordcloud' style="width: 60%; height: 100%">
+    wordcloud
+  </div>
 
   <input type="number" min="100" id="amount" name="amount" placeholder="Enter Amount" value="1000"
      step="100" oninput="this.value =
      !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
     >
-  <div id='polygon' style="width: 80%; height:80%">
-</div>
+
+  <div id='polygon' style="width: 40%; height:80%">
+  </div>
 
 </div>
+
 </body>
 
+<script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+<script src="wordcloud_charities_trial.js"></script>
 <script src="movable-centroid.js"></script>
 <script src="charitycards.js"></script>
 <script src="index.js"></script>

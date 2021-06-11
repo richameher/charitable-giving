@@ -2,7 +2,6 @@
 function remove_polygon()
 {
 d3.select("#polygon").select("svg").remove();
-
 }
 function load_polygon()
 {
@@ -10,7 +9,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var donateamount=JSON.parse(sessionStorage.getItem("donateamount"));
 var number_charities=Object.keys(active_charities).length;
-d3.select("#polygon").select("svg").remove();
+remove_polygon();
 var svg = d3.select("#polygon").append("svg").attr({ width: 1600, height: 800 }),
     data = [],
     lineFunction = d3.svg.line()
@@ -23,16 +22,15 @@ var svg = d3.select("#polygon").append("svg").attr({ width: 1600, height: 800 })
      paths=[],path,path1,path2, isDown = false, count=0, l1_dist=0,l2_dist=0,l3_dist=0;
 
 let char_names=[];
+let char_keywords=[];
 
-  var newdata=[]
-  for (var key in active_charities) {
-      if (active_charities.hasOwnProperty(key)) {
-        newdata.push(dataset[key-1]["Name"]);
-        }
+for (var key in active_charities) {
+    if (active_charities.hasOwnProperty(key)) {
+      char_names.push(dataset[key-1]["Name"]);
+      char_keywords.push(dataset[key-1]["Keywords"]);
       }
-  for (var i = 0; i < number_charities; i++) {
-    char_names[i]=newdata[i];
-}
+    }
+  console.log(char_keywords);
 
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
@@ -91,6 +89,11 @@ function updatePath(){
 
   }
     var ratios=get_ratios(l3_dist);
+
+    initial_keywords(ratios,char_keywords);
+    //Call wordcloud
+
+
     var fontsizes=[]
     console.log("Ratios",ratios);
     for (var i = 0; i < number_charities; i++) {
@@ -239,4 +242,5 @@ svg.on('mousedown', function(){
 });
 
 });
+
 }
