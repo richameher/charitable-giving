@@ -2,6 +2,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="charitycards.css">
 <link rel="stylesheet" href="index.css">
 
@@ -9,27 +11,10 @@
   <h1> Decide to Donate</h1>
 </head>
 <body>
-<div class='container' style="display: flex;">
-  <div id='matrix' style="width: 40%; align: ">
-  </div>
-  <div id='cards' style="width: 60%; height:100%">
-    <div id="row">
-    </div>
-  </div>
-</div>
-<div class='container-vertical' style="display: flex;">
-  <div id='wordcloud' style="width: 60%; height: 100%">
-    wordcloud
-  </div>
-
-  <input type="number" min="100" id="amount" name="amount" placeholder="Enter Amount" value="1000"
-     step="100" oninput="this.value =
-     !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
-    >
-
-  <div id='polygon' style="width: 40%; height:80%">
-  </div>
-
+<div class='container'>
+  <div id="matrix"><input type="number" min="100" id="amount" name="amount" placeholder="Enter Amount" value="1000" step="100" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"></div><div id='cards'><div id="row"></div></div></div>
+<div class='container-vertical'>
+  <div id='wordcloud'></div><div id='polygon'></div>
 </div>
 
 </body>

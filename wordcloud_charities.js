@@ -1,7 +1,12 @@
 // parameters- keywords for charity selected, ratios
 // no return, draw a wordcloud
 
-var svgcommon = d3.select("#wordcloud").append("svg").attr({ width: 1200, height: 800 })
+var svgcommon = d3.select("#wordcloud").append("svg").attr({ width: 1200, height: 800 });
+function remove_keywords()
+{
+  d3.select("#wordcloud").select("svg").remove();
+  svgcommon = d3.select("#wordcloud").append("svg").attr({ width: 1200, height: 800 });
+}
 
 function initial_keywords(ratios,char_keywords)
 {
@@ -51,8 +56,6 @@ for (var key in word_size) {
     }
     else {
       svgcommon.selectAll('#wordcloud_'+key)
-      // .attr("y", Math.random()*400)//magic number here
-      // .attr("x", Math.random()*400)
       .attr('text-anchor', 'middle')
       .attr('font-size',word_size[key]*80 )
       .attr('font-weight',word_size[key]*900)

@@ -2,6 +2,7 @@
 function remove_polygon()
 {
 d3.select("#polygon").select("svg").remove();
+remove_keywords();
 }
 function load_polygon()
 {
@@ -218,7 +219,6 @@ updatePath();
 updateCircle();
 
 svg.on('mousedown', function(){
-    d3.selectAll('.centroid').attr('r',30);
     var m = d3.mouse(this);
     if(!count){
         if(!isDown){

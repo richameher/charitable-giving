@@ -1,6 +1,6 @@
 var margin = {top: 40, right: 50, bottom: 50, left: 100},
-    width = 600,
-    height = 300;
+    width = 800,
+    height = 400;
 
 var svg = d3.select("#matrix").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -28,7 +28,7 @@ function build_matrix()
         charity_matrix[i][j]=0;
     }
   }
-  console.log("Hello");
+
   d3.csv("data/charities_list_clean.csv", function(dataset) {
 
      dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
@@ -84,11 +84,11 @@ var row = svg.selectAll(".row")
         .attr("x2", width);
 
     row.append("text")
-        .attr("x", 0)
+        .attr("class","matrixlabels")
+        .attr("x", -10)
         .attr("y", y.rangeBand() / 2)
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
-        .style("font-size", "30px")
         .text(function(d, i) { return d; });
 
 row.selectAll(".cell")
@@ -98,8 +98,6 @@ row.selectAll(".cell")
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand())
-    .style("stroke-width", 100)
-    .attr("style", "outline: thin solid black;")
     .append("text")
             .text(function(d,i) {
                 console.log(d);
@@ -118,11 +116,11 @@ column.append("line")
     .attr("x1", -width);
 
 column.append("text")
+    .attr("class","matrixlabels")
     .attr("x", 6)
     .attr("y", -20)
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
-    .style("font-size", "30px")
     .attr("transform", "rotate(90)")
     .text(function(d, i) { return d; });
 var w;
@@ -169,7 +167,7 @@ var cells=row.selectAll(".cell")
 
                  })
                  .style("fill", colorMap)
-                 .style("stroke", '#555');
+                 ;
 
 console.log(matrix);
 });
