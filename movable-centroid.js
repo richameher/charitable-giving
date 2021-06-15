@@ -11,7 +11,7 @@ var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var donateamount=JSON.parse(sessionStorage.getItem("donateamount"));
 var number_charities=Object.keys(active_charities).length;
 remove_polygon();
-var svg = d3.select("#polygon").append("svg").attr({ width: 1600, height: 800 }),
+var svg = d3.select("#polygon").append("svg").attr({ width: 1200, height: 800 }),
     data = [],
     lineFunction = d3.svg.line()
         .x(function (data) {
@@ -144,14 +144,14 @@ function updateCircle(){
 }
 
 var init=[600,60];
-var init_fontsize=33;
+var init_fontsize=20;
 function start(){
 if (number_charities==3) {
-  data[3] = { x: init[0]-66, y: init[1]+66 };
-  data[1] = { x: init[0]+182, y: init[1]+488 };
-  data[2] = { x: init[0]+488, y: init[1]+182 };
-  var centrx= (init[0]+init[0]+init[0]-66+182+488)/3;
-  var centry= (init[1]+init[1]+init[1]+66+488+182)/3;
+  data[3] = { x: 310, y: 600};
+  data[1] = { x: 600, y: 200 };
+  data[2] = { x: 885, y: 600 };
+  var centrx= (data[3].x+data[2].x+data[1].x)/3;
+  var centry= (data[3].y+data[2].y+data[1].y)/3;
   data[0] = { x: centrx, y: centry };
 
 for (var i = 1; i <= number_charities; i++) {

@@ -10,28 +10,41 @@ h1{
   margin: auto;
   box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 }
+h2{
+  font-family: 'Montserrat', sans-serif;
+  margin: auto;
+  /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
+  transition: 0.2s;
+
+}
 div{
     display: inline-block;
     /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
 }
 
 .container{
+  display:block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-  overflow: scroll;
+  /* overflow: scroll; */
+  height:700px;
+
 }
 .container-vertical{
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 }
 #cards{
-  padding: 1%;
+  /* display:block; */
+  /* padding: 1%; */
   width: 58%;
   transition: 0.5s;
-  height:100%;
+  height:700px;
+  overflow:scroll;
 
 
 }
 #impactcard{
   float: left;
+  transition: 0.1s;
 }
 #improw{
   padding: 1%;
@@ -40,13 +53,13 @@ div{
   padding: 1%;
   width: 38%;
   transition: 0.5s;
-  height:100%;
+  height:800px;
 }
 #wordcloud {
   /* padding: 0.5%; */
   /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
   transition: 0.3s;
-  width: 40%;
+  width: 30%;
   height:100%;
   }
 #polygon{
@@ -84,7 +97,7 @@ input[type=number]{
   stroke-width: 10;
   fill: #dacece;
   r:20;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 .centroid{
@@ -92,7 +105,7 @@ input[type=number]{
   stroke-width: 10;
   fill: #e07b7b;
   r:40;
-  /* transition: 0.3s; */
+  transition: 0.1s;
 }
 /* Richa:This is not working */
 #myLabel{
@@ -117,4 +130,5 @@ input[type=number]{
   width: 20%;
   height: auto;
   float:left;
+  transition: 0.1s;
 }
