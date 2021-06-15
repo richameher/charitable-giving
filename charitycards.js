@@ -33,7 +33,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     var card = document.createElement("div");
     card.classList.add("card");
-    card.setAttribute('id',newdata[i]["charityid"])
+    card.setAttribute('id',newdata[i]["CharityID"])
 
 
     var h3=document.createElement("h3");
@@ -74,6 +74,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
   }
   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
   load_polygon();
+  removeimpact();
+  loadimpact();
   });
 
 });

@@ -35,13 +35,15 @@ img {
   height:100%;
 
 }
-.row {margin: 0 -5px;}
+.row {margin: 0 -5px;
+  overflow: hidden;}
 
 .row:after {
   content: "";
   display: table;
   clear: both;
   height:400px;
+  overflow: scroll;
 }
 
 

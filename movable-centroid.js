@@ -24,11 +24,14 @@ var svg = d3.select("#polygon").append("svg").attr({ width: 1600, height: 800 })
 
 let char_names=[];
 let char_keywords=[];
+let char_id_map=[];
 
 for (var key in active_charities) {
     if (active_charities.hasOwnProperty(key)) {
-      char_names.push(dataset[key-1]["Name"]);
-      char_keywords.push(dataset[key-1]["Keywords"]);
+      console.log(active_charities);
+      char_names.push(dataset[key-1]["Name"]); //check if charityid starts from 0
+      char_keywords.push(dataset[key-1]["KeyWords"]);
+      char_id_map.push(dataset[key-1]["CharityID"]);
       }
     }
   console.log(char_keywords);
@@ -62,13 +65,14 @@ var numbers=[];
 for (var i = 0; i < number_charities; i++) {
   if (donateamount==null)
    donateamount=1000;
-  numbers[i]=donateamount*(ratios[i]);
+  numbers[i]=(donateamount*(ratios[i])).toFixed(2);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
        .attr('font-size',fontsizes[i] )
        .attr("class", "myLabel")//easy to style with CSS
        .text(char_names[i]+" Rs"+parseInt(numbers[i]));
   }
+  changeimpact(numbers,char_id_map);
 
 }
 function updatePath(){
@@ -92,7 +96,6 @@ function updatePath(){
     var ratios=get_ratios(l3_dist);
 
     initial_keywords(ratios,char_keywords);
-    //Call wordcloud
 
 
     var fontsizes=[]

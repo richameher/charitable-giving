@@ -162,6 +162,7 @@ var cells=row.selectAll(".cell")
                        // window.open("index.html",'_self');
                        load_charity();
                        remove_polygon();
+                       removeimpact();
 
                         }
 
