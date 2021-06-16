@@ -173,4 +173,5 @@ var cells=row.selectAll(".cell")
 console.log(matrix);
 });
 
+document.body.style.zoom = 0.66;
 //Referenced from - https://gist.github.com/srosenthal/2770072
