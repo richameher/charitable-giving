@@ -1,15 +1,111 @@
 .card {
-  /* Add shadows to create the "card" effect */
+  /* flex: 1 0 20%; */
+  /* position: relative; */
+  margin: .5em;
+  padding: 2em;
+  min-height: 4em;
+  background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  border: 3px solid white;
+  height: 500px;
+  width: 25vw;
+  transition: transform 0.0s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+
 }
 
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+.content {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  /* margin:30px 50px 30px 50px; */
+  transition: transform 0s;
+  transform-style: preserve-3d;
 }
 
-/* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
+.card:hover .content  {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.0s;
+}
+
+.card_front,
+.card_back {
+  position: absolute;
+   height: 100%;
+  /* width: 100%;/ */
+  /* background: white; */
+  text-align: center;
+  /* font-size: 60px; */
+  backface-visibility: hidden;
+}
+
+.card_back {
+  transform: rotateY( 180deg );
+    transition: transform 0.0s;
+}
+
+h3{
+  font-size: 30px;
+}
+p{
+  font-size: 20px;
+}
+img {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  float: right;
+}
+/* .column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+  height:100%;
+
+} */
+/* .row {margin: 0 -5px;
+  overflow: hidden;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  height:400px;
+  overflow: scroll;
+} */
+
+
+.active {
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+ border-bottom: 8px solid #d86767;
+ word-wrap: break-word;
+ overflow: auto;
+ height: 500px;
+ width: 25vw;
+
+
+}
+
+.inactive {
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+ border-bottom: 3px solid white;
+ overflow: auto;
+ height: 500px;
+ width: 25vw;
+
+ /* word-wrap: break-word;
 }
