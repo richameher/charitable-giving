@@ -12,6 +12,7 @@ h1{
   box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 }
 h2{
+  font-size: 40px;
   font-family: 'Montserrat', sans-serif;
   margin: auto;
   /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
@@ -44,7 +45,7 @@ div{
 
 }
 #impactcard{
-  float: left;
+  /* float: left; */
   transition: 0.1s;
 }
 #improw{
@@ -74,6 +75,7 @@ div{
 #impactdiag {
   /* padding: 1%; */
   /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+  float:right;
   transition: 0.3s;
   width: 20%;
   height:100%;

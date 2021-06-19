@@ -31,15 +31,15 @@ function build_matrix()
 
   d3.csv("data/charities_list_clean.csv", function(dataset) {
 
-     dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
+     // dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
      dataset.forEach(function(entry){charity_matrix[entry.region][entry.Cause]=1 });
-     console.log(charity_matrix);
+     // console.log(charity_matrix);
 });
 return charity_matrix;
 }
 
 var matrix=build_matrix();
-console.log(matrix[0][1]);
+// console.log(matrix[0][1]);
 
 var x = d3.scale.ordinal()
     .domain(d3.range(numcols))
@@ -53,7 +53,7 @@ var y = d3.scale.ordinal()
 d3.csv("data/rowscol_label.csv", function(dataset) {
 
 var newdata=dataset;
-console.log(newdata);
+// console.log(newdata);
 
 var rowLabels = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
@@ -100,8 +100,8 @@ row.selectAll(".cell")
     .attr("height", y.rangeBand())
     .append("text")
             .text(function(d,i) {
-                console.log(d);
-                console.log(i);
+                // console.log(d);
+                // console.log(i);
                 // return d.value;
             });
 
@@ -125,7 +125,7 @@ column.append("text")
     .text(function(d, i) { return d; });
 var w;
 var cells=row.selectAll(".cell")
-    .data(function(d, i) { return matrix[i]; console.log(d,i);})
+    .data(function(d, i) { return matrix[i];})
     .style("fill", colorMap);
 
     cells.on('mouseover', function(d,i) {
@@ -154,7 +154,7 @@ var cells=row.selectAll(".cell")
                        else {
                          regioninfo=0;
                        }
-                       console.log(i,regioninfo);
+                       // console.log(i,regioninfo);
                        if (d==1)
                        {
                        sessionStorage.setItem("regioninfo", regioninfo);
@@ -170,7 +170,7 @@ var cells=row.selectAll(".cell")
                  .style("fill", colorMap)
                  ;
 
-console.log(matrix);
+// console.log(matrix);
 });
 
 document.body.style.zoom = 0.66;

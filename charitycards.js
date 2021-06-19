@@ -5,17 +5,17 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
   var newdata=dataset;
   var active_charities={};
-  console.log(sessionStorage.getItem("regioninfo"));
-  console.log(sessionStorage.getItem("cause"));
+  // console.log(sessionStorage.getItem("regioninfo"));
+  // console.log(sessionStorage.getItem("cause"));
   var region=sessionStorage.getItem("regioninfo");
   var causes=sessionStorage.getItem("cause");
 
   for (i = 0; i < newdata.length; i++) {
 
-    console.log(newdata[i]["region"],newdata[i]["Cause"],region,causes);
+    // console.log(newdata[i]["region"],newdata[i]["Cause"],region,causes);
     if (newdata[i]["region"]==region && newdata[i]["Cause"]==causes )
     {
-    console.log(newdata[i]);
+    // console.log(newdata[i]);
     var desc = document.createTextNode(newdata[i]["description"]);
 
     var name = document.createTextNode(newdata[i]["Name"]);
@@ -24,7 +24,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     // let getcharitylink = ("https://logo.clearbit.com/"+newdata[i]["web_link"]+"");
     let getcharitylink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
-    console.log(getcharitylink);
+    // console.log(getcharitylink);
     var image = document.createElement("IMG");
     image.setAttribute("src", getcharitylink);
 
@@ -46,7 +46,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     card.appendChild(h3);
     card.appendChild(p);
 
-    console.log(card);
+    // console.log(card);
     column.appendChild(card);
 
     var element=document.getElementById("row");
@@ -55,14 +55,14 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 }
   d3.selectAll('div.card')
   .on('mousedown',function(){
-    console.log(d3.select(this));
+    // console.log(d3.select(this));
     if (d3.select(this).attr('class') !='active')
     {
       d3.select(this).attr('class', "active");
-      console.log(d3.select(this).attr('id'));
+      // console.log(d3.select(this).attr('id'));
       var name=(d3.select(this).attr('id'));
       active_charities[name]=1;
-      console.log(active_charities);
+      // console.log(active_charities);
 
 
   }
@@ -70,7 +70,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     d3.select(this).attr('class', "inactive");
     var name=(d3.select(this).attr('id'));
     delete active_charities[name];
-    console.log(active_charities);
+    // console.log(active_charities);
   }
   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
   load_polygon();

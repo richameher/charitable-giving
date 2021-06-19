@@ -143,7 +143,11 @@ function updateCircle(){
           .attr('cy', function(d) { return d.y; });
 }
 
-var init=[600,60];
+var height_ctr=d3.select("svg").attr("height");
+var width_ctr=d3.select("svg").attr("width");
+console.log("Height",height_ctr);
+var init=[width_ctr/2,height_ctr/2];
+console.log(init);
 var init_fontsize=20;
 function start(){
 if (number_charities==3) {
@@ -223,25 +227,15 @@ updateCircle();
 
 svg.on('mousedown', function(){
     var m = d3.mouse(this);
-    if(!count){
-        if(!isDown){
-            data[0] = { x: m[0], y: m[1] };
-            updatePath();
-            updateCircle();
-            console.log(data);
-        } else {
             updateCircle();
             console.log(data);
 
             d3.selectAll('.centroid').call(dragC);
             paths[0].call(dragP);
-            path1.call(dragP);
-            path2.call(dragP);
+            paths[1].call(dragP);
+            paths[2].call(dragP);
             count++;
             console.log(data);
-        }
-    }
-    isDown = !isDown;
 });
 
 });
