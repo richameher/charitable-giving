@@ -82,7 +82,7 @@ function loadimpact(){
            let sp_entity=dataset[key-1]["entity_provided"].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
            console.log("enitities per charity",sp_entity,sp_entity.length);
            // 100 other people
-           var donateamountperenty=100*(DonateAmntperCharity/sp_entity.length);
+           var donateamountperenty=((100*DonateAmntperCharity)/sp_entity.length);
 
            // for each enity per charity calculate how many entities can be bough
            for (i = 0; i < sp_entity.length; i++) {
@@ -136,11 +136,11 @@ function changeimpact(donationamt,char_id_map){
           let sp_entity=dataset[key-1]["entity_provided"].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
     //       console.log("enitities per charity",sp_entity,sp_entity.length);
     //       // 100 other people
-          var donateamountperenty=100*(donationamt[char_id_map[key]]/sp_entity.length);
-          console.log("Donation amount for charity",key,donationamt[char_id_map.indexOf(key)],char_id_map.indexOf(key));
+          var donateamountperenty=((100*donationamt[char_id_map.indexOf(key)])/sp_entity.length);
+          console.log("Donation amount for charity",key,donationamt[char_id_map.indexOf(key)],donateamountperenty);
           for (i = 0; i < sp_entity.length; i++) {
     //
-                   var no_ofentities= Math.floor(donationamt[char_id_map.indexOf(key)]/entity_cost[sp_entity[i]]);
+                   var no_ofentities= Math.floor(donateamountperenty/entity_cost[sp_entity[i]]);
                    console.log("Charity special enity",sp_entity[i]);
                    if (donate_amnt_entities.hasOwnProperty(sp_entity[i])){
                      donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
