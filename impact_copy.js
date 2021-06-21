@@ -130,17 +130,15 @@ function changeimpact(donationamt,char_id_map){
 
     console.log("Donation Amt",char_id_map);
     d3.csv("data/charities_list_clean.csv", function(dataset) {
-    //
+
     for (var key in active_charities) {
         if (active_charities.hasOwnProperty(key)) {
           let sp_entity=dataset[key-1]["entity_provided"].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
-    //       console.log("enitities per charity",sp_entity,sp_entity.length);
-    //       // 100 other people
           var donateamountperenty=((100*donationamt[char_id_map.indexOf(key)])/sp_entity.length);
           console.log("Donation amount for charity",key,donationamt[char_id_map.indexOf(key)],donateamountperenty);
           for (i = 0; i < sp_entity.length; i++) {
-    //
-                   var no_ofentities= Math.floor(donateamountperenty/entity_cost[sp_entity[i]]);
+                    var no_ofentities= Math.floor(donateamountperenty/entity_cost[sp_entity[i]]);
+
                    console.log("Charity special enity",sp_entity[i]);
                    if (donate_amnt_entities.hasOwnProperty(sp_entity[i])){
                      donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
@@ -149,7 +147,6 @@ function changeimpact(donationamt,char_id_map){
                      donate_amnt_entities[sp_entity[i]]=no_ofentities;
                    }
                }
-    //
         }
       }
 
@@ -157,14 +154,16 @@ function changeimpact(donationamt,char_id_map){
       for (var entkey in donate_amnt_entities) {
         if (donate_amnt_entities.hasOwnProperty(entkey)) {
             desc=desc+" "+ donate_amnt_entities[entkey];
-            if (parseInt(donate_amnt_entities[entkey]) > 1){
+            if (parseInt(donate_amnt_entities[entkey]) > 1 && entkey!='cash'){
                 entkey=entkey+"s";
+            }
+            else {
+              entkey="Rs";
             }
             desc=desc+" "+" "+entkey+",";
 
         }
       }
-    //
       document.getElementById("MAIN").innerHTML=desc.replace(/,\s*$/, "");
     });
 
