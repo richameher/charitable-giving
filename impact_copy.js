@@ -154,13 +154,13 @@ function changeimpact(donationamt,char_id_map){
       for (var entkey in donate_amnt_entities) {
         if (donate_amnt_entities.hasOwnProperty(entkey)) {
             desc=desc+" "+ donate_amnt_entities[entkey];
-            if (parseInt(donate_amnt_entities[entkey]) > 1 && entkey!='cash'){
+            if (parseInt(donate_amnt_entities[entkey]) >= 1 && entkey!='cash'){
                 entkey=entkey+"s";
             }
             else {
               entkey="Rs";
             }
-            desc=desc+" "+" "+entkey+",";
+            desc=desc+" "+" "+entkey.split("_").join(" ")+",";
 
         }
       }

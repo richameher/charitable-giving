@@ -187,5 +187,5 @@ function select_default_cell(){
 }
 
 select_default_cell();
-document.body.style.zoom = 0.55;
+document.body.style.zoom = 0.50;
 //Referenced from - https://gist.github.com/srosenthal/2770072

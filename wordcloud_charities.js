@@ -50,7 +50,7 @@ for (var key in word_size) {
          .attr('text-anchor', 'middle')
          .attr('font-size',word_size[key]*80 )
          .attr('font-weight',word_size[key]*100 )
-         .attr("class", "myLabel")//easy to style with CSS
+         .attr("class", "wordcloudlab")//easy to style with CSS
          .text(key);
 
     }
