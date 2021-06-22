@@ -30,14 +30,14 @@
   box-shadow: 0 8px 8px 0 grey;
   opacity: 1;
   overflow: auto;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .inactive:hover {
   box-shadow: 0 8px 8px 0 grey;
   opacity: 1;
   overflow: auto;
-  height: 500px;
+  /* height: 500px; */
 }
 
 h3{
@@ -51,12 +51,15 @@ img {
   height: auto;
   padding: 10px;
   float: right;
+
 }
 .column {
   /* float: left; */
+  display: inline-block;
   width: 25%;
   /* padding: 0 10px; */
   height:100%;
+
 
 }
 .row {margin: 0 -5px;

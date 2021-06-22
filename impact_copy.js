@@ -57,7 +57,7 @@ function loadimpact(){
   var DonateAmntperCharity= (donateamount/parseInt(Object.keys(active_charities).length));
 
   //console.log("Donation Amount per charity",donateamount,DonateAmntperCharity);
-  var impact_text="If 100 other people donate as much as you then you all could contribute ";
+  var impact_text="If 100 people donate as much as you then you all could contribute ";
 
 
   var impactcard = document.createElement("div");
@@ -125,7 +125,7 @@ function changeimpact(donationamt,char_id_map){
     //console.log("Character ID Map",char_id_map);
     var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
     var number_charities=Object.keys(active_charities).length;
-    var desc="If 100 other people donate as much as you then you all could contribute";
+    var desc="If 100 people donate as much as you then you all could contribute";
     var donate_amnt_entities={};
 
     //console.log("Donation Amt",char_id_map);
@@ -158,7 +158,7 @@ function changeimpact(donationamt,char_id_map){
                 entkey=entkey+"s";
             }
             else {
-              entkey="Rs";
+              entkey="Rs Cash Relief";
             }
             desc=desc+" "+" "+entkey.split("_").join(" ")+",";
 

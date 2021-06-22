@@ -133,7 +133,7 @@ var cells=row.selectAll(".cell")
                 if (d==1)
                 {
                  d3.select(this)
-                        .style('fill', "#3CAEA3");}
+                        .style('fill', "#e07b7b");}
                  })
                  .on('mouseout', function() {
                    console.log("mouseout");
