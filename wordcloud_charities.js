@@ -45,7 +45,7 @@ for (var key in word_size) {
       console.log("Appending Text");
       svgcommon.append("text")
          .attr('id',"wordcloud_"+key)
-         .attr("y", Math.random()*600+200)//magic number here
+         .attr("y", Math.random()*600+100)//magic number here
          .attr("x", 200+Math.random()*400)
          .attr('text-anchor', 'middle')
          .attr('font-size',word_size[key]*80 )

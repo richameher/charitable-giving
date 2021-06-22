@@ -1,7 +1,7 @@
 function geticon(entity)
 {
   let geticonlink = "";
-  // console.log(entity);
+  // //console.log(entity);
   if (entity.includes("Cash")){
     geticonlink=("data/icons/Cash.png");
   }
@@ -18,7 +18,7 @@ function geticon(entity)
     geticonlink=("data/icons/CovidCare.png");
   }
   else {
-    console.log("No cause");
+    //console.log("No cause");
   }
   return geticonlink;
 }
@@ -36,7 +36,7 @@ d3.csv("data/entity_cost.csv", function(edataset) {
   for (i = 0; i < edataset.length; i++) {
       entity_cost[edataset[i]['Entity']]=edataset[i]['Cost'];
   }
-  console.log("Enity cost dict",entity_cost);
+  //console.log("Enity cost dict",entity_cost);
 
 });
 }
@@ -56,7 +56,7 @@ function loadimpact(){
   calc_enty_cost();
   var DonateAmntperCharity= (donateamount/parseInt(Object.keys(active_charities).length));
 
-  console.log("Donation Amount per charity",donateamount,DonateAmntperCharity);
+  //console.log("Donation Amount per charity",donateamount,DonateAmntperCharity);
   var impact_text="If 100 other people donate as much as you then you all could contribute ";
 
 
@@ -80,7 +80,7 @@ function loadimpact(){
 
 
            let sp_entity=dataset[key-1]["entity_provided"].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
-           console.log("enitities per charity",sp_entity,sp_entity.length);
+           //console.log("enitities per charity",sp_entity,sp_entity.length);
            // 100 other people
            var donateamountperenty=((100*DonateAmntperCharity)/sp_entity.length);
 
@@ -88,7 +88,7 @@ function loadimpact(){
            for (i = 0; i < sp_entity.length; i++) {
 
                     var no_ofentities= Math.floor(donateamountperenty/entity_cost[sp_entity[i]]);
-                    console.log("Charity special enity",sp_entity[i]);
+                    //console.log("Charity special enity",sp_entity[i]);
 
                     if (donate_amnt_entities.hasOwnProperty(sp_entity[i])){
                       donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
@@ -107,8 +107,8 @@ function loadimpact(){
             impact_text=impact_text+" "+donate_amnt_entities[entkey]+ " "+entkey+",";
         }
       }
-      console.log(donate_amnt_entities);
-      var para=document.createElement("h2");
+      //console.log(donate_amnt_entities);
+      var para=document.createElement("h3");
       para.appendChild(document.createTextNode(impact_text.replace(/,\s*$/, "")));
 
       para.setAttribute('id',"MAIN");
@@ -122,24 +122,24 @@ function loadimpact(){
 }
 
 function changeimpact(donationamt,char_id_map){
-    console.log("Character ID Map",char_id_map);
+    //console.log("Character ID Map",char_id_map);
     var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
     var number_charities=Object.keys(active_charities).length;
     var desc="If 100 other people donate as much as you then you all could contribute";
     var donate_amnt_entities={};
 
-    console.log("Donation Amt",char_id_map);
+    //console.log("Donation Amt",char_id_map);
     d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     for (var key in active_charities) {
         if (active_charities.hasOwnProperty(key)) {
           let sp_entity=dataset[key-1]["entity_provided"].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
           var donateamountperenty=((100*donationamt[char_id_map.indexOf(key)])/sp_entity.length);
-          console.log("Donation amount for charity",key,donationamt[char_id_map.indexOf(key)],donateamountperenty);
+          //console.log("Donation amount for charity",key,donationamt[char_id_map.indexOf(key)],donateamountperenty);
           for (i = 0; i < sp_entity.length; i++) {
                     var no_ofentities= Math.floor(donateamountperenty/entity_cost[sp_entity[i]]);
 
-                   console.log("Charity special enity",sp_entity[i]);
+                   //console.log("Charity special enity",sp_entity[i]);
                    if (donate_amnt_entities.hasOwnProperty(sp_entity[i])){
                      donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
                    }
@@ -150,7 +150,7 @@ function changeimpact(donationamt,char_id_map){
         }
       }
 
-      console.log(donate_amnt_entities);
+      ////console.log(donate_amnt_entities);
       for (var entkey in donate_amnt_entities) {
         if (donate_amnt_entities.hasOwnProperty(entkey)) {
             desc=desc+" "+ donate_amnt_entities[entkey];

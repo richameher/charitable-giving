@@ -146,23 +146,39 @@ function updateCircle(){
 var height_ctr=d3.select("svg").attr("height");
 var width_ctr=d3.select("svg").attr("width");
 console.log("Height",height_ctr);
-var init=[width_ctr/2,height_ctr/2];
+var text_x,text_y=0;
+var init=[width_ctr/2,400];
 console.log(init);
 var init_fontsize=20;
 function start(){
 if (number_charities==3) {
-  data[3] = { x: 310, y: 600};
-  data[1] = { x: 600, y: 200 };
-  data[2] = { x: 885, y: 600 };
-  var centrx= (data[3].x+data[2].x+data[1].x)/3;
-  var centry= (data[3].y+data[2].y+data[1].y)/3;
-  data[0] = { x: centrx, y: centry };
+  data[3] = { x: init[0]+200, y: init[1]-200 };
+  data[1] = { x: init[0], y: init[1]+200 };
+  data[2] = { x: init[0]-200, y: init[1]-200 };
+  // var centrx= (data[3].x+data[2].x+data[1].x)/3;
+  // var centry= (data[3].y+data[2].y+data[1].y)/3;
+  data[0] = { x: init[0], y: init[1] };
 
 for (var i = 1; i <= number_charities; i++) {
+  if (data[i].y > data[0].y )
+  {
+    text_y= data[i].y+40;
+  }
+  else {
+    text_y= data[i].y-40;
+  }
+
+  if (data[i].x > data[0].x )
+  {
+    text_x= data[i].x-20;
+  }
+  else {
+    text_x= data[i].x+20;
+  }
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
      .attr('font-size',init_fontsize )
      .attr("class", "myLabel")
@@ -170,17 +186,34 @@ for (var i = 1; i <= number_charities; i++) {
 }
 }
 else if(number_charities==2){
-  data[1] = { x: init[0], y: init[1]+488 };
-  data[2] = { x: init[0], y: init[1]+182 };
-  var centrx= (init[0]+init[0])/2;
-  var centry= (init[1]+init[1]+488+182)/2;
-  data[0] = { x: centrx, y: centry };
+  data[1] = { x: init[0], y: init[1]-200 };
+  data[2] = { x: init[0], y: init[1]+200 };
+  // var centrx= (init[0]+init[0])/2;
+  // var centry= (init[1]+init[1]+488+182)/2;
+
+  data[0] = {  x: init[0], y: init[1] };
 
   for (var i = 1; i <= number_charities; i++) {
+
+    if (data[i].y > data[0].y )
+    {
+      text_y= data[i].y+40;
+    }
+    else {
+      text_y= data[i].y-40;
+    }
+
+    if (data[i].x > data[0].x )
+    {
+      text_x= data[i].x-20;
+    }
+    else {
+      text_x= data[i].x+20;
+    }
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
      .attr('font-size',init_fontsize )
      .attr("class", "myLabel")//easy to style with CSS
@@ -189,19 +222,36 @@ else if(number_charities==2){
 }
 }
 else if(number_charities==4){
-  data[1] = { x: init[0]+273, y: init[1]+732 };
-  data[2] = { x: init[0], y: init[1]+273 };
-  data[3] = { x: init[0], y: init[1]+732 };
-  data[4] = { x: init[0]+273, y: init[1]+273 };
-  var centrx= ((4*init[0])+273+273)/4;
-  var centry= ((4*init[1])+732*2+273*2)/4;
-  data[0] = { x: centrx, y: centry };
+  data[1] = { x: init[0]-200, y: init[1]+200 };
+  data[2] = { x: init[0]-200, y: init[1]-200 };
+  data[3] = { x: init[0]+200, y: init[1]+200 };
+  data[4] = { x: init[0]+200, y: init[1]-200 };
+  // var centrx= ((4*init[0])+273+273)/4;
+  // var centry= ((4*init[1])+732*2+273*2)/4;
+  data[0] = { x: init[0], y: init[1] };
+
 
   for (var i = 1; i <= number_charities; i++) {
+
+        if (data[i].y > data[0].y )
+        {
+          text_y= data[i].y+40;
+        }
+        else {
+          text_y= data[i].y-40;
+        }
+
+        if (data[i].x > data[0].x )
+        {
+          text_x= data[i].x-20;
+        }
+        else {
+          text_x= data[i].x+20;
+        }
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
      .attr('font-size',init_fontsize )
      .attr("class", "myLabel")//easy to style with CSS

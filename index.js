@@ -136,10 +136,12 @@ var cells=row.selectAll(".cell")
                         .style('fill', "#3CAEA3");}
                  })
                  .on('mouseout', function() {
+                   console.log("mouseout");
                     d3.select(this)
                         .style('fill', colorMap);
                  })
                  .on('click', function(d,i) {
+
                      var regioninfo;
                      if (d3.select(this.parentNode).datum()=="North")
                      {
@@ -167,11 +169,23 @@ var cells=row.selectAll(".cell")
                         }
 
                  })
-                 .style("fill", colorMap)
+
+
                  ;
 
 // console.log(matrix);
 });
 
+function select_default_cell(){
+  sessionStorage.setItem("regioninfo", 0);
+  sessionStorage.setItem("cause", 0);
+  load_charity();
+  sessionStorage.setItem('SelectedCharities',JSON.stringify({"12": 1, "17": 1, "28": 1}));
+  load_polygon();
+  loadimpact();
+
+}
+
+select_default_cell();
 document.body.style.zoom = 0.55;
 //Referenced from - https://gist.github.com/srosenthal/2770072
