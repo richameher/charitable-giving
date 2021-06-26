@@ -142,7 +142,7 @@ input[type=number]{
   stroke-width: 10;
   fill: #e07b7b;
   r:40;
-  /* transition: 0.1s; */
+  transition: 0.1s;
 }
 
 .centroid:hover{
@@ -209,11 +209,6 @@ font-width:40px;}
   font-width:140px;
 }
 
-.myLabel:hover{
-  transition: 0.3s;
-  font-size:50px;
-  font-width:140px;
-}
 
 #amount{
   font-size:30px;

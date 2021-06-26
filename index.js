@@ -2,6 +2,7 @@ var margin = {top: 40, right: 50, bottom: 50, left: 100},
     width = 800,
     height = 400;
 
+var preselect=0;
 var svg = d3.select("#matrix").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -30,16 +31,12 @@ function build_matrix()
   }
 
   d3.csv("data/charities_list_clean.csv", function(dataset) {
-
-     // dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
      dataset.forEach(function(entry){charity_matrix[entry.region][entry.Cause]=1 });
-     // console.log(charity_matrix);
 });
 return charity_matrix;
 }
 
-var matrix=build_matrix();
-// console.log(matrix[0][1]);
+let matrix=build_matrix();
 
 var x = d3.scale.ordinal()
     .domain(d3.range(numcols))
@@ -66,17 +63,14 @@ for (var i = 0; i < numcols; i++) {
   columnLabels[i] = String(newdata[i]["Columns"])
 }
 
-
-
 var colorMap = d3.scale.linear()
-    .domain([1,0])
+    .domain([1,0]) //adding -1 for preselect
     .range(["#20639B", "white"]);
-    //.range(["red", "black", "green"]);
-    //.range(["brown", "#ddd", "darkgreen"]);
 
 var row = svg.selectAll(".row")
     .data(rowLabels)
-  .enter().append("g")
+    .enter().append("g")
+    .attr("id",function(d, i){return "row"+i})
     .attr("class", "row")
     .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
@@ -91,10 +85,14 @@ var row = svg.selectAll(".row")
         .attr("text-anchor", "end")
         .text(function(d, i) { return d; });
 
+
+
 row.selectAll(".cell")
     .data(matrix)
-  .enter().append("rect")
+    .enter()
+    .append("rect")
     .attr("class", "cell")
+    .attr("id",function(d, i) {return "cell"+i})
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand())
@@ -123,60 +121,59 @@ column.append("text")
     .attr("text-anchor", "start")
     .attr("transform", "rotate(90)")
     .text(function(d, i) { return d; });
-var w;
+
 var cells=row.selectAll(".cell")
     .data(function(d, i) { return matrix[i];})
     .style("fill", colorMap);
 
-    cells.on('mouseover', function(d,i) {
-
-                if (d==1)
-                {
-                 d3.select(this)
-                        .style('fill', "#e07b7b");}
-                 })
-                 .on('mouseout', function() {
-                   console.log("mouseout");
-                    d3.select(this)
-                        .style('fill', colorMap);
-                 })
-                 .on('click', function(d,i) {
-
-                     var regioninfo;
-                     if (d3.select(this.parentNode).datum()=="North")
-                     {
-                        regioninfo=1;
-
-                      }
-                      else if (d3.select(this.parentNode).datum()=="Central")
-                      {
-                         regioninfo=2;
-
-                       }
-                       else {
-                         regioninfo=0;
-                       }
-                       // console.log(i,regioninfo);
-                       if (d==1)
-                       {
-                       sessionStorage.setItem("regioninfo", regioninfo);
-                       sessionStorage.setItem("cause", i);
-                       // window.open("index.html",'_self');
-                       load_charity();
-                       remove_polygon();
-                       removeimpact();
-
-                        }
-
-                 })
+cells.on('mouseover', function(d,i) {
+            console.log(d3.select(this));
+            if (d==1){
+              d3.select(this)
+              .style('fill', "#e07b7b");  }
+             })
+       .on('mouseout', function() {
+           d3.select(this)
+              .style('fill', colorMap);
+       })
+       .on('click', function(d,i) {
 
 
-                 ;
+           var regioninfo;
+           if (d3.select(this.parentNode).datum()=="North")
+           {
+              regioninfo=1;
+
+            }
+            else if (d3.select(this.parentNode).datum()=="Central")
+            {
+               regioninfo=2;
+
+             }
+             else {
+               regioninfo=0;
+             }
+             // console.log(i,regioninfo);
+             if (d==1)
+             {
+             sessionStorage.setItem("regioninfo", regioninfo);
+             sessionStorage.setItem("cause", i);
+             // window.open("index.html",'_self');
+             load_charity();
+             remove_polygon();
+             removeimpact();
+
+              }
+
+       });
 
 // console.log(matrix);
 });
 
 function select_default_cell(){
+
+  var key=0;
+
   sessionStorage.setItem("regioninfo", 0);
   sessionStorage.setItem("cause", 0);
   load_charity();

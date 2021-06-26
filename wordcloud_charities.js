@@ -18,17 +18,14 @@ function initial_keywords(ratios,char_keywords)
   for (var i = 0; i < number_charities; i++) {
 
       var words = char_keywords[i].split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
-      console.log(words.length);
 
         words.forEach(function(word){
 
           if (word != ""){
             if (word_size[word]){
-              console.log(word_size[word],ratios[i]);
               word_size[word]=word_size[word]+ratios[i];
 
             } else {
-              console.log(word_size[word],ratios[i]);
               word_size[word]=ratios[i];
             }
           }
@@ -39,10 +36,8 @@ console.log(word_size);
 var data=[];
 for (var key in word_size) {
   if (word_size.hasOwnProperty(key)) {
-    console.log(document.getElementById("wordcloud_"+key));
     if (!document.getElementById("wordcloud_"+key))
     {
-      console.log("Appending Text");
       svgcommon.append("text")
          .attr('id',"wordcloud_"+key)
          .attr("y", Math.random()*600+100)//magic number here

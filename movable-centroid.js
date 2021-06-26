@@ -68,7 +68,7 @@ for (var i = 0; i < number_charities; i++) {
   numbers[i]=(donateamount*(ratios[i])).toFixed(2);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
-       .attr('font-size',fontsizes[i] )
+       .attr('font-size',33 )
        .attr("class", "myLabel")//easy to style with CSS
        .text(char_names[i]+" Rs"+parseInt(numbers[i]));
   }
@@ -155,8 +155,6 @@ if (number_charities==3) {
   data[3] = { x: init[0]+200, y: init[1]-200 };
   data[1] = { x: init[0], y: init[1]+200 };
   data[2] = { x: init[0]-200, y: init[1]-200 };
-  // var centrx= (data[3].x+data[2].x+data[1].x)/3;
-  // var centry= (data[3].y+data[2].y+data[1].y)/3;
   data[0] = { x: init[0], y: init[1] };
 
 for (var i = 1; i <= number_charities; i++) {
@@ -188,9 +186,6 @@ for (var i = 1; i <= number_charities; i++) {
 else if(number_charities==2){
   data[1] = { x: init[0], y: init[1]-200 };
   data[2] = { x: init[0], y: init[1]+200 };
-  // var centrx= (init[0]+init[0])/2;
-  // var centry= (init[1]+init[1]+488+182)/2;
-
   data[0] = {  x: init[0], y: init[1] };
 
   for (var i = 1; i <= number_charities; i++) {
@@ -226,8 +221,6 @@ else if(number_charities==4){
   data[2] = { x: init[0]-200, y: init[1]-200 };
   data[3] = { x: init[0]+200, y: init[1]+200 };
   data[4] = { x: init[0]+200, y: init[1]-200 };
-  // var centrx= ((4*init[0])+273+273)/4;
-  // var centry= ((4*init[1])+732*2+273*2)/4;
   data[0] = { x: init[0], y: init[1] };
 
 
@@ -260,14 +253,26 @@ else if(number_charities==4){
 }
 }
 else if(number_charities==1){
+
+  data[0] = { x: init[0], y: init[1] };
+
   svg.append("text")
      .attr('id','textelementmain')
-     .attr("y", init[1]+200)//magic number here
+     .attr("y", init[1]+100)//magic number here
      .attr("x", init[0])
      .attr('text-anchor', 'middle')
-     .attr('font-size',init_fontsize )
+     .attr('font-size',40 )
+     .attr('font-color','grey')
      .attr("class", "myLabel")//easy to style with CSS
-     .text("Go to this website"+char_names[0]);
+     .text(char_names[0]+" Rs"+donateamount);
+
+     var circle = svg.selectAll('circle').data(data);
+     circle.enter().append('circle').attr('r', 0).transition().duration(500).attr('r', 30);
+     circle.attr('cx', function(d) { return d.x; })
+           .attr('cy', function(d) { return d.y; })
+           .style('fill','grey');
+
+
 }
 }
 
