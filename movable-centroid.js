@@ -69,8 +69,9 @@ for (var i = 0; i < number_charities; i++) {
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
        .attr('font-size',33 )
+       .attr('opacity',fontsizes[i]/33)
        .attr("class", "myLabel")//easy to style with CSS
-       .text(char_names[i]+" Rs"+parseInt(numbers[i]));
+       .text(char_names[i]+"\n Rs"+parseInt(numbers[i]));
   }
   changeimpact(numbers,char_id_map);
 
@@ -168,11 +169,12 @@ for (var i = 1; i <= number_charities; i++) {
 
   if (data[i].x > data[0].x )
   {
-    text_x= data[i].x-20;
+    text_x= data[i].x-40;
   }
   else {
-    text_x= data[i].x+20;
+    text_x= data[i].x+40;
   }
+
   svg.append("text")
      .attr('id','textelement'+i)
      .attr("y", text_y)//magic number here
@@ -236,10 +238,10 @@ else if(number_charities==4){
 
         if (data[i].x > data[0].x )
         {
-          text_x= data[i].x-20;
+          text_x= data[i].x-40;
         }
         else {
-          text_x= data[i].x+20;
+          text_x= data[i].x+40;
         }
   svg.append("text")
      .attr('id','textelement'+i)

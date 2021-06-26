@@ -209,6 +209,11 @@ font-width:40px;}
   font-width:140px;
 }
 
+.myLabel:hover{
+  transition: 0.5s;
+  font-size:30px;
+  font-width:140px;
+}
 
 #amount{
   font-size:30px;
