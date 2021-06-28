@@ -15,6 +15,8 @@ svg.append("rect")
     .attr("width", width)
     .attr("height", height);
 
+
+
 //TO-DO: numrows and cols suppose to come with number of regions and causes, it can be hardcoded for now
 var numrows = 3;
 var numcols = 3;
@@ -80,10 +82,18 @@ var row = svg.selectAll(".row")
     row.append("text")
         .attr("class","matrixlabels")
         .attr("x", -10)
-        .attr("y", y.rangeBand() / 2)
+        .attr("y", 15)
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
         .text(function(d, i) { return d; });
+
+    row.append("svg:image")
+    .attr('z-index', 1)
+    .attr("x", -85)
+    .attr("y", 30)
+    .attr('width', 85)
+    .attr('height', 85)
+    .attr("xlink:href", "data/india.svg")
 
 
 
