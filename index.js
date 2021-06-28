@@ -1,8 +1,9 @@
-var margin = {top: 400, right: 200, bottom: 100, left: 200},
+var margin = {top: 40, right: 50, bottom: 50, left: 100},
     width = 800,
     height = 400;
 
-var svg = d3.select("body").append("svg")
+var preselect=0;
+var svg = d3.select("#matrix").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     // .style("margin-left", -margin.left + "px")
@@ -18,6 +19,7 @@ svg.append("rect")
 var numrows = 3;
 var numcols = 3;
 
+
 function build_matrix()
 {
   var charity_matrix= new Array(numrows);
@@ -27,18 +29,14 @@ function build_matrix()
         charity_matrix[i][j]=0;
     }
   }
-  console.log("Hello");
-  d3.csv("data/charities_list_clean.csv", function(dataset) {
 
-     dataset.forEach(function(entry){console.log(entry.region,entry.Cause)});
+  d3.csv("data/charities_list_clean.csv", function(dataset) {
      dataset.forEach(function(entry){charity_matrix[entry.region][entry.Cause]=1 });
-     console.log(charity_matrix);
 });
 return charity_matrix;
 }
 
-var matrix=build_matrix();
-console.log(matrix[0][1]);
+let matrix=build_matrix();
 
 var x = d3.scale.ordinal()
     .domain(d3.range(numcols))
@@ -52,7 +50,7 @@ var y = d3.scale.ordinal()
 d3.csv("data/rowscol_label.csv", function(dataset) {
 
 var newdata=dataset;
-console.log(newdata);
+// console.log(newdata);
 
 var rowLabels = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
@@ -65,17 +63,14 @@ for (var i = 0; i < numcols; i++) {
   columnLabels[i] = String(newdata[i]["Columns"])
 }
 
-
-
 var colorMap = d3.scale.linear()
-    .domain([1,0])
+    .domain([1,0]) //adding -1 for preselect
     .range(["#20639B", "white"]);
-    //.range(["red", "black", "green"]);
-    //.range(["brown", "#ddd", "darkgreen"]);
 
 var row = svg.selectAll(".row")
     .data(rowLabels)
-  .enter().append("g")
+    .enter().append("g")
+    .attr("id",function(d, i){return "row"+i})
     .attr("class", "row")
     .attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
@@ -83,26 +78,28 @@ var row = svg.selectAll(".row")
         .attr("x2", width);
 
     row.append("text")
-        .attr("x", 0)
+        .attr("class","matrixlabels")
+        .attr("x", -10)
         .attr("y", y.rangeBand() / 2)
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
-        .style("font-size", "30px")
         .text(function(d, i) { return d; });
+
+
 
 row.selectAll(".cell")
     .data(matrix)
-  .enter().append("rect")
+    .enter()
+    .append("rect")
     .attr("class", "cell")
+    .attr("id",function(d, i) {return "cell"+i})
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand())
-    .style("stroke-width", 100)
-    .attr("style", "outline: thin solid black;")
     .append("text")
             .text(function(d,i) {
-                console.log(d);
-                console.log(i);
+                // console.log(d);
+                // console.log(i);
                 // return d.value;
             });
 
@@ -117,59 +114,75 @@ column.append("line")
     .attr("x1", -width);
 
 column.append("text")
+    .attr("class","matrixlabels")
     .attr("x", 6)
     .attr("y", -20)
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
-    .style("font-size", "30px")
     .attr("transform", "rotate(90)")
     .text(function(d, i) { return d; });
-var w;
+
 var cells=row.selectAll(".cell")
-    .data(function(d, i) { return matrix[i]; console.log(d,i);})
+    .data(function(d, i) { return matrix[i];})
     .style("fill", colorMap);
 
-    cells.on('mouseover', function(d,i) {
+cells.on('mouseover', function(d,i) {
+            console.log(d3.select(this));
+            if (d==1){
+              d3.select(this)
+              .style('fill', "#e07b7b");  }
+             })
+       .on('mouseout', function() {
+           d3.select(this)
+              .style('fill', colorMap);
+       })
+       .on('click', function(d,i) {
 
-                if (d==1)
-                {
-                 d3.select(this)
-                        .style('fill', "#3CAEA3");}
-                 })
-                 .on('mouseout', function() {
-                    d3.select(this)
-                        .style('fill', colorMap);
-                 })
-                 .on('click', function(d,i) {
-                     if (d3.select(this.parentNode).datum()=="North")
-                     {
-                        region=1;
 
-                      }
-                      else if (d3.select(this.parentNode).datum()=="Central")
-                      {
-                         region=2;
+           var regioninfo;
+           if (d3.select(this.parentNode).datum()=="North")
+           {
+              regioninfo=1;
 
-                       }
-                       else {
-                         region=0;
-                       }
-                       console.log(i,region);
-                       if (d==1)
-                       {
-                       window.open("charitycards.html",'_self');
-                     }
-                       sessionStorage.setItem("region", region);
-                       sessionStorage.setItem("cause", i);
-                       // w.element="Hello";
+            }
+            else if (d3.select(this.parentNode).datum()=="Central")
+            {
+               regioninfo=2;
 
-                       // w = window.open('charitycards.html','_self');
-                       // w.myVariable = thisIsAnObject;
-                 })
-                 .style("fill", colorMap)
-                 .style("stroke", '#555');
+             }
+             else {
+               regioninfo=0;
+             }
+             // console.log(i,regioninfo);
+             if (d==1)
+             {
+             sessionStorage.setItem("regioninfo", regioninfo);
+             sessionStorage.setItem("cause", i);
+             // window.open("index.html",'_self');
+             load_charity();
+             remove_polygon();
+             removeimpact();
 
-console.log(matrix);
+              }
+
+       });
+
+// console.log(matrix);
 });
 
+function select_default_cell(){
+
+  var key=0;
+
+  sessionStorage.setItem("regioninfo", 0);
+  sessionStorage.setItem("cause", 0);
+  load_charity();
+  sessionStorage.setItem('SelectedCharities',JSON.stringify({"12": 1, "17": 1, "28": 1}));
+  load_polygon();
+  loadimpact();
+
+}
+
+select_default_cell();
+document.body.style.zoom = 0.50;
 //Referenced from - https://gist.github.com/srosenthal/2770072
