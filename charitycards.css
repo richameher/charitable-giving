@@ -1,74 +1,95 @@
 .card {
-  flex: 1 0 20%;
-  position: relative;
+  /* flex: 1 0 20%; */
+  /* position: relative; */
   margin: .5em;
   padding: 2em;
   min-height: 4em;
   background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
- /* width: 50%; */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 3px solid white;
+  overflow: hidden;
+  height: 100px;
+  opacity: 0.6;
 }
 
-/* On mouse-over, add a deeper shadow */
+.inactive {
+  margin: .5em;
+  padding: 2em;
+  min-height: 4em;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 3px solid white;
+  overflow: hidden;
+  height: 100px;
+  opacity: 0.6;
+}
+
 .card:hover {
-  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 8px 0 grey;
+  opacity: 1;
+  overflow: auto;
+  /* height: 500px; */
 }
 
+.inactive:hover {
+  box-shadow: 0 8px 8px 0 grey;
+  opacity: 1;
+  overflow: auto;
+  /* height: 500px; */
+}
+
+h3{
+  font-size: 30px;
+}
+p{
+  font-size: 20px;
+}
 img {
-  max-width: 80%;
+  width: 30%;
   height: auto;
   padding: 10px;
+  float: right;
+
 }
 .column {
-  float: left;
+  /* float: left; */
+  display: inline-block;
   width: 25%;
-  padding: 0 10px;
-}
-/* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+  /* padding: 0 10px; */
+  height:100%;
 
-/* Clear floats after the columns */
+
+}
+.row {margin: 0 -5px;
+  overflow: hidden;}
+
 .row:after {
   content: "";
   display: table;
   clear: both;
+  height:100px;
+  overflow: scroll;
 }
 
 
 .active {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid grey;
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+ border-bottom: 8px solid #d86767;
+ /* word-wrap: break-word; */
+ /* overflow: auto;
+ height: 500px; */
+ height: 100px;
+ overflow: hidden;
+ opacity: 1;
+
 }
 
-.inactive {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
+ /* word-wrap: break-word;
 }
-
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-/* Add some padding inside the card container */
-/* .container {
-  padding: 2px 16px;
-} */
