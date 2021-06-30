@@ -184,20 +184,23 @@ input[type=number]{
 }
 
 #donatebutton {
-    background:url("/data/icons/donate.png") no-repeat;
-    cursor:pointer;
-    position: absolute;
-    transform: translateX(50%);
-    width: 200px;
-    height: 200px;
+    transform: translateX(6%);
+    transform: translateY(6%);
+    width: 300px;
+    height: 100px;
     border: 10px solid #fff;
-    opacity: 0.6;
+    /* opacity: 0.6; */
     transition: 0.3s;
-    text-align:bottom;
+    font-size: 30px;
+    background-color: steelblue;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
 }
 
 
-#donatebutton:hover {opacity: 1;}
+#donatebutton:hover {border: 2px solid #fff;}
 
 #MAIN:hover {transition: 0.3s;
 font-size:40px;

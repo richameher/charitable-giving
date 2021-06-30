@@ -8,8 +8,11 @@ function load_polygon()
 {
 d3.csv("data/charities_list_clean.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
-var donateamount=JSON.parse(sessionStorage.getItem("donateamount"));
 var number_charities=Object.keys(active_charities).length;
+var donateamount=JSON.parse(sessionStorage.getItem("donateamount"));
+if (donateamount==null)
+ donateamount=1000;
+
 remove_polygon();
 var svg = d3.select("#polygon").append("svg").attr({ width: 1200, height: 800 }),
     data = [],
@@ -63,8 +66,7 @@ function updatetext(fontsizes,ratios){
 var numbers=[];
 
 for (var i = 0; i < number_charities; i++) {
-  if (donateamount==null)
-   donateamount=1000;
+
   numbers[i]=(donateamount*(ratios[i])).toFixed(2);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
