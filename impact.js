@@ -22,7 +22,7 @@ function geticon(entity)
   }
   return geticonlink;
 }
-
+// test
 function removeimpact()
 {
   d3.select("#improw").selectAll("div").remove();
