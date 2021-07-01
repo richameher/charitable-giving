@@ -33,13 +33,11 @@ let char_id_map=[];
 
 for (var key in active_charities) {
     if (active_charities.hasOwnProperty(key)) {
-      console.log(active_charities);
       char_names.push(dataset[key-1]["Name"]); //check if charityid starts from 0
       char_keywords.push(dataset[key-1]["KeyWords"]);
       char_id_map.push(dataset[key-1]["CharityID"]);
       }
     }
-  console.log(char_keywords);
 
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
@@ -100,19 +98,16 @@ function updatePath(){
   }
     var ratios=get_ratios(l3_dist);
 
-    initial_keywords(ratios,char_keywords);
+    initial_keywords(ratios,char_id_map);
 
 
     var fontsizes=[]
-    console.log("Ratios",ratios);
     for (var i = 0; i < number_charities; i++) {
     fontsizes[i]=(init_fontsize*3)*ratios[i];
   }
     updatetext(fontsizes,ratios);
 
-    console.log(ldist);
     for (var i = 0; i < number_charities; i++) {
-    console.log(ldist[i]);
     paths[i].attr('d', lineFunction(ldist[i]))
     .attr('stroke','#20639B')
     .attr('stroke-width','20px');
@@ -150,10 +145,8 @@ function updateCircle(){
 
 var height_ctr=d3.select("svg").attr("height");
 var width_ctr=d3.select("svg").attr("width");
-console.log("Height",height_ctr);
 var text_x,text_y=0;
 var init=[width_ctr/2,400];
-console.log(init);
 var init_fontsize=20;
 function start(){
 if (number_charities==3) {
@@ -289,14 +282,12 @@ updateCircle();
 svg.on('mousedown', function(){
     var m = d3.mouse(this);
             updateCircle();
-            console.log(data);
 
             d3.selectAll('.centroid').call(dragC);
             paths[0].call(dragP);
             paths[1].call(dragP);
             paths[2].call(dragP);
             count++;
-            console.log(data);
 });
 
 });

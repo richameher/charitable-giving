@@ -50,7 +50,6 @@ var y = d3.scale.ordinal()
 d3.csv("data/rowscol_label.csv", function(dataset) {
 
 var newdata=dataset;
-// console.log(newdata);
 
 var rowLabels = new Array(numrows);
 for (var i = 0; i < numrows; i++) {
@@ -127,7 +126,6 @@ var cells=row.selectAll(".cell")
     .style("fill", colorMap);
 
 cells.on('mouseover', function(d,i) {
-            console.log(d3.select(this));
             if (d==1){
               d3.select(this)
               .style('fill', "#e07b7b");  }
@@ -153,7 +151,6 @@ cells.on('mouseover', function(d,i) {
              else {
                regioninfo=0;
              }
-             // console.log(i,regioninfo);
              if (d==1)
              {
              sessionStorage.setItem("regioninfo", regioninfo);
@@ -167,7 +164,6 @@ cells.on('mouseover', function(d,i) {
 
        });
 
-// console.log(matrix);
 });
 
 function select_default_cell(){

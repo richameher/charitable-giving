@@ -5,17 +5,13 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
   var newdata=dataset;
   var active_charities={};
-  // console.log(sessionStorage.getItem("regioninfo"));
-  // console.log(sessionStorage.getItem("cause"));
   var region=sessionStorage.getItem("regioninfo");
   var causes=sessionStorage.getItem("cause");
 
   for (i = 0; i < newdata.length; i++) {
 
-    // console.log(newdata[i]["region"],newdata[i]["Cause"],region,causes);
     if (newdata[i]["region"]==region && newdata[i]["Cause"]==causes )
     {
-    // console.log(newdata[i]);
     var desc = document.createTextNode(newdata[i]["description"]);
 
     var name = document.createTextNode(newdata[i]["Name"]);
@@ -30,8 +26,6 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var a = document.createElement("a");
     a.setAttribute("href", getcharitylink);
     a.setAttribute("target", "_blank");
-
-    console.log("Adding charity link",a);
 
     var column = document.createElement("div");
     column.classList.add("column");
@@ -61,11 +55,9 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 }
   d3.selectAll('div.card')
   .on('mousedown',function(){
-    console.log(d3.select(this));
     if (d3.select(this).attr('class') !='active')
     {
       d3.select(this).attr('class', "active");
-      console.log(d3.select(this));
       var name=(d3.select(this).attr('id'));
       active_charities[name]=1;
   }
