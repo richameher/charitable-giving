@@ -117,7 +117,7 @@ function loadimpact(){
         }
       //console.log(donate_amnt_entities);
       var para=document.createElement("h3");
-      para.appendChild(document.createTextNode(impact_text.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")));
+      para.appendChild(document.createTextNode(replace_impact_str(impact_text)));
 
       para.setAttribute('id',"MAIN");
 
@@ -172,7 +172,12 @@ function changeimpact(donationamt,char_id_map){
 
         }
       }
-      document.getElementById("MAIN").innerHTML=desc.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ");
+      document.getElementById("MAIN").innerHTML=replace_impact_str(desc);
     });
 
+}
+
+function replace_impact_str(replace_str)
+{
+  return replace_str.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")+" for COVID-19 Relief";
 }
