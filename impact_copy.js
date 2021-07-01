@@ -57,7 +57,7 @@ function loadimpact(){
   var DonateAmntperCharity= (donateamount/parseInt(Object.keys(active_charities).length));
 
   //console.log("Donation Amount per charity",donateamount,DonateAmntperCharity);
-  var impact_text="If 100 people donate as much as you then you all could contribute ";
+  var impact_text="If 100 people donate as much as you do, then collectively, your contributions help provide ";
 
 
   var impactcard = document.createElement("div");
@@ -102,14 +102,22 @@ function loadimpact(){
               }
         }
 
-      for (var entkey in donate_amnt_entities) {
-        if (donate_amnt_entities.hasOwnProperty(entkey)) {
-            impact_text=impact_text+" "+donate_amnt_entities[entkey]+ " "+entkey+",";
+        for (var entkey in donate_amnt_entities) {
+          if (donate_amnt_entities.hasOwnProperty(entkey)) {
+              impact_text=impact_text+" "+ donate_amnt_entities[entkey];
+              if (parseInt(donate_amnt_entities[entkey]) >= 1 && entkey!='cash'){
+                  entkey=entkey+"s";
+              }
+              else {
+                entkey="Rs Cash Relief";
+              }
+              impact_text=impact_text+" "+" "+entkey.split("_").join(" ")+",";
+
+          }
         }
-      }
       //console.log(donate_amnt_entities);
       var para=document.createElement("h3");
-      para.appendChild(document.createTextNode(impact_text.replace(/,\s*$/, "")));
+      para.appendChild(document.createTextNode(impact_text.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")));
 
       para.setAttribute('id',"MAIN");
 
@@ -125,7 +133,7 @@ function changeimpact(donationamt,char_id_map){
     //console.log("Character ID Map",char_id_map);
     var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
     var number_charities=Object.keys(active_charities).length;
-    var desc="If 100 people donate as much as you then you all could contribute";
+    var desc="If 100 people donate as much as you do, then collectively, your contributions help provide";
     var donate_amnt_entities={};
 
     //console.log("Donation Amt",char_id_map);
@@ -164,7 +172,7 @@ function changeimpact(donationamt,char_id_map){
 
         }
       }
-      document.getElementById("MAIN").innerHTML=desc.replace(/,\s*$/, "");
+      document.getElementById("MAIN").innerHTML=desc.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ");
     });
 
 }

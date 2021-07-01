@@ -222,3 +222,8 @@ font-width:40px;}
   font-size:30px;
   float: left;
 }
+
+a[target="_blank"]:after {
+    float: left;
+    content: url("data/icons/external_link_icon.png");
+}

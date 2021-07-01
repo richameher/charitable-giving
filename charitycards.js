@@ -22,9 +22,16 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     var cause = document.createTextNode(newdata[i]["Cause"]);
 
-    let getcharitylink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
+    let getcharityimglink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     var image = document.createElement("IMG");
-    image.setAttribute("src", getcharitylink);
+    image.setAttribute("src", getcharityimglink);
+
+    let getcharitylink = newdata[i]["web_link"];
+    var a = document.createElement("a");
+    a.setAttribute("href", getcharitylink);
+    a.setAttribute("target", "_blank");
+
+    console.log("Adding charity link",a);
 
     var column = document.createElement("div");
     column.classList.add("column");
@@ -40,10 +47,14 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var p=document.createElement("p");
     p.appendChild(desc);
 
+    card.appendChild(a);
     card.appendChild(image);
     card.appendChild(h3);
     card.appendChild(p);
+
+
     column.appendChild(card);
+
     var element=document.getElementById("row");
     element.appendChild(column);
   }
