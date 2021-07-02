@@ -10,16 +10,12 @@
   transition: 0.3s;
   border: 3px solid white;
   overflow: hidden;
-  height: 400px;
+  height: 450px;
   opacity: 1;
   align-items: center;
   border-radius: 15px;
 }
 
-
-h3{
-  font-size: 40px;
-}
 p{
   font-size: 20px;
 }
@@ -32,7 +28,6 @@ p{
   display: inline-block;
   width: 20%;
   height:25%;
-  overflow-x: scroll;
 }
 .cardbutton_active {
     width: 200px;
@@ -48,8 +43,8 @@ p{
 }
 
 .cardbutton_inactive {
-  width: 200px;
-  height: 100px;
+  width: 220px;
+  height: 120px;
   border: 10px solid #fff;
   opacity: 0.6;
   transition: 0.3s;
@@ -62,8 +57,8 @@ p{
 }
 
 .cardbutton{
-  width: 200px;
-  height: 100px;
+  width: 220px;
+  height: 120px;
   border: 10px solid #fff;
   opacity: 0.6;
   transition: 0.3s;

@@ -1,36 +1,49 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: white;
+    background-color: rgb(253 254 255);
     height: 100%;
-    font-weight: normal;
+    font-weight:300;
     /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
 h1{
   font-size: 60px;
   font-family: 'Montserrat', sans-serif;
-  background-color: white;
   font-weight:300;
-  height: 100px;
+  height: 60px;
   /* width: 2800px; */
   /* margin: auto; */
   color: #20639B;
   text-align: center;
   width: 2800px;
-  border-bottom: 4px solid #20639B ;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+#header_button{
+  width: 29%;
+  height: 100px;
+  border: 10px solid #fff;
+  transition: 0.3s;
+  font-size: 35px;
+  font-weight: bold;
+  font-weight:300;
+  background-color: rgb(90 108 136);
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
 }
 h2{
   font-size: 35px;
   font-family: 'Montserrat', sans-serif;
   margin: 20px;
-  font-weight: normal;
-  padding-top: 1%;
-  color: #20639B;
+  font-weight: 300;
+  color: rgb(90 108 136);
   /* text-shadow: 1px 0px #000080; */
   /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
   transition: 0.2s;
+}
 
-
+.step{
+  float: left;
 }
 
 h3{
@@ -38,7 +51,7 @@ h3{
   font-family: 'Montserrat', sans-serif;
   margin: auto;
   padding-top: 3%;
-  font-weight:normal;
+  font-weight:300;
   /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
   transition: 0.2s;
 
@@ -52,13 +65,13 @@ div{
 .container{
   display:block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height:700px;
   width: 2800px;
 
 }
 .container-vertical{
+  display:inline-block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   height: 900px;
   width: 2800px;
@@ -66,11 +79,19 @@ div{
 }
 #cards{
   /* display:block; */
-  /* padding: 1%; */
   width: 58%;
   transition: 0.5s;
-  height:100%;
+  height:700px;
   overflow:auto;
+
+
+}
+
+#matrix{
+  padding: 1%;
+  width: 40%;
+  transition: 0.5s;
+  height:100%;
 
 }
 .impacticons_cont{
@@ -79,7 +100,7 @@ div{
 
 }
 #impactcard{
-  float: right;
+  float: left;
   display: grid;
   transition: 0.1s;
   position: absolute;
@@ -91,16 +112,10 @@ div{
   text-align:center;
 
 }
-#matrix{
-  padding: 1%;
-  width: 40%;
-  transition: 0.5s;
-  height:100%;
-
-}
 #wordcloud {
   /* padding: 0.5%; */
   /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+  display:inline-block;
   transition: 0.3s;
   width: 30%;
   height:100%;
@@ -108,6 +123,7 @@ div{
 #polygon{
   /* margin-right: 1%; */
   /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+
   transition: 0.5s;
   width: 40%;
   height:100%;
@@ -123,18 +139,17 @@ div{
   height:100%;
   }
 
+#input_div{
+  display: flex;
+
+}
 input[type=number]{
-  padding: 12px 20px;
-  margin: auto;
   font-family: 'Montserrat', sans-serif;
-  /* display: inline-block; */
   border: 10px solid #fff;
   border-bottom: 10px solid #ccc;
   border-radius: 10px;
-  /* box-sizing: border-box; */
-  /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
-  font-size: 30px;
-  float: right;
+  font-size: 10px;
+  float: left;
 }
 
 .circle2{

@@ -143,6 +143,7 @@ cells .on('click', function(d,i) {
            load_charity();
            remove_polygon();
            removeimpact();
+           remove_keywords();
 
             }
 
