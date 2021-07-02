@@ -171,7 +171,12 @@ input[type=number]{
   stroke:white;
   stroke-width: 10;
   transition: 0.3s;
-  border-radius: 20px;
+}
+
+.cell:hover{
+  stroke:white;
+  stroke-width:15;
+  transition: 0.1s;
 
 }
 

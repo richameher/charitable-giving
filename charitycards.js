@@ -1,3 +1,4 @@
+
 function load_charity()
 {
 d3.selectAll('div.column').remove();
@@ -7,6 +8,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
   var active_charities={};
   var region=sessionStorage.getItem("regioninfo");
   var causes=sessionStorage.getItem("cause");
+  var preselect=sessionStorage.getItem("preselect");
   var maxlength=40;
 
   for (i = 0; i < newdata.length; i++) {
@@ -38,6 +40,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     card_button.classList.add("cardbutton");
     card_button.appendChild(document.createTextNode("Select"));
     card_button.setAttribute('id',newdata[i]["CharityID"])
+
     // card.setAttribute('id',newdata[i]["CharityID"])
 
 
@@ -62,17 +65,26 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     element.appendChild(column);
   }
 }
+
+//Richa- only for preselecting cells
+if (preselect==1)
+{
+  preselect_cards(d3.selectAll('.cardbutton'));
+}
+
   d3.selectAll('.cardbutton')
   .on('mousedown',function(){
     if (d3.select(this).attr('class') !='cardbutton_active')
     {
       d3.select(this).attr('class', "cardbutton_active");
       var name=(d3.select(this).attr('id'));
+      document.getElementById(name).innerHTML="Unselect";
       active_charities[name]=1;
   }
   else {
     d3.select(this).attr('class', "cardbutton_inactive");
     var name=(d3.select(this).attr('id'));
+    document.getElementById(name).innerHTML="Select";
     delete active_charities[name];
   }
   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
@@ -82,4 +94,41 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
   });
 
 });
+}
+
+function preselect_cards(obj){
+var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
+
+for (var key in active_charities) {
+    if (active_charities.hasOwnProperty(key)) {
+      document.getElementById(key).innerHTML="Unselect";
+    }
+  }
+obj
+.on('mousedown',function(){
+  if (d3.select(this).attr('class') !='cardbutton_active')
+  {
+    d3.select(this).attr('class', "cardbutton_active");
+    var name=(d3.select(this).attr('id'));
+    document.getElementById(name).innerHTML="Unselect";
+    active_charities[name]=1;
+}
+else {
+  d3.select(this).attr('class', "cardbutton_inactive");
+  var name=(d3.select(this).attr('id'));
+  document.getElementById(name).innerHTML="Select";
+  delete active_charities[name];
+}
+console.log("active_charities",active_charities);
+sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
+load_polygon();
+removeimpact();
+loadimpact();
+});
+
+d3.selectAll(".cardbutton")
+.attr('class', "cardbutton_active");
+
+sessionStorage.setItem('preselect',0);
+
 }

@@ -2,7 +2,7 @@ var margin = {top: 40, right: 50, bottom: 50, left: 100},
     width = 800,
     height = 400;
 
-var preselect=0;
+var preselect=1;
 var svg = d3.select("#matrix").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -94,18 +94,12 @@ row.selectAll(".cell")
     .attr("id",function(d, i) {return "cell"+i})
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
-    .attr("height", y.rangeBand())
-    .append("text")
-            .text(function(d,i) {
-                // console.log(d);
-                // console.log(i);
-                // return d.value;
-            });
+    .attr("height", y.rangeBand());
 
 
 var column = svg.selectAll(".column")
     .data(columnLabels)
-  .enter().append("g")
+    .enter().append("g")
     .attr("class", "column")
     .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
 
@@ -125,42 +119,32 @@ var cells=row.selectAll(".cell")
     .data(function(d, i) { return matrix[i];})
     .style("fill", colorMap);
 
-cells.on('mouseover', function(d,i) {
-            if (d==1){
-              d3.select(this)
-              .style('fill', "#e07b7b");  }
-             })
-       .on('mouseout', function() {
-           d3.select(this)
-              .style('fill', colorMap);
-       })
-       .on('click', function(d,i) {
+if (preselect==1)
+{
+  svg.selectAll("#row0").selectAll("#cell0")
+  .style('fill',"#e07b7b");
+  preselect=0;
+}
 
-
+cells .on('click', function(d,i) {
            var regioninfo;
+           console.log("Selecting Cell",d3.select(this));
+           d3.selectAll(".cell").style('fill',"#20639B");
+           d3.select(this).style('fill',"#e07b7b");
            if (d3.select(this.parentNode).datum()=="North")
+            {regioninfo=1;}
+           else if (d3.select(this.parentNode).datum()=="Central")
+            {regioninfo=2;}
+           else {regioninfo=0;}
+           if (d==1)
            {
-              regioninfo=1;
+           sessionStorage.setItem("regioninfo", regioninfo);
+           sessionStorage.setItem("cause", i);
+           load_charity();
+           remove_polygon();
+           removeimpact();
 
             }
-            else if (d3.select(this.parentNode).datum()=="Central")
-            {
-               regioninfo=2;
-
-             }
-             else {
-               regioninfo=0;
-             }
-             if (d==1)
-             {
-             sessionStorage.setItem("regioninfo", regioninfo);
-             sessionStorage.setItem("cause", i);
-             // window.open("index.html",'_self');
-             load_charity();
-             remove_polygon();
-             removeimpact();
-
-              }
 
        });
 
@@ -169,13 +153,18 @@ cells.on('mouseover', function(d,i) {
 function select_default_cell(){
 
   var key=0;
-
   sessionStorage.setItem("regioninfo", 0);
   sessionStorage.setItem("cause", 0);
+  sessionStorage.setItem("preselect", 1);
+  var active_charities={};
+  active_charities["12"]=1;
+  active_charities["28"]=1;
+  active_charities["17"]=1;
+  sessionStorage.setItem("SelectedCharities",JSON.stringify(active_charities));
   load_charity();
-  sessionStorage.setItem('SelectedCharities',JSON.stringify({"12": 1, "17": 1, "28": 1}));
   load_polygon();
   loadimpact();
+  // sessionStorage.setItem("preselect", 0);
 
 }
 
