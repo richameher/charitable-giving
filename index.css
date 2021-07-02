@@ -15,7 +15,7 @@ h1{
   /* margin: auto; */
   color: #20639B;
   text-align: center;
-  width: 2800px;
+  width: 100%;
   border-bottom: 4px solid #20639B ;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 }
@@ -50,26 +50,31 @@ div{
 }
 
 .container{
-  display:block;
+  display: flex;
+  padding: 27px 63px;
+  margin: 0px 16px;
+  /* flex-direction: row; */
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   /* overflow: scroll; */
-  height:700px;
-  width: 2800px;
+  height: 700px;
 
 }
 .container-vertical{
+  width: 100%
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-  height: 900px;
-  width: 2800px;
 
 }
 #cards{
-  /* display:block; */
+  /* display: flex; */
   /* padding: 1%; */
-  width: 58%;
-  transition: 0.5s;
-  height:100%;
-  overflow:auto;
+  width: 68%;
+  /* transition: 0.5s; */
+  /* height: 700px; */
+
+}
+#row {
+  display: flex;
+  overflow-x: auto;
 
 }
 #impactcard{
@@ -84,8 +89,9 @@ div{
 
 }
 #matrix{
+  display: grid;
   padding: 1%;
-  width: 40%;
+  width: 30%;
   transition: 0.5s;
   height:100%;
 

@@ -32,6 +32,12 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     var card = document.createElement("div");
     card.classList.add("card");
+    var content = document.createElement("div");
+    content.classList.add("content");
+    var card_front = document.createElement("div");
+    var card_back = document.createElement("div");
+    card_front.classList.add("card_front");
+    card_back.classList.add("card_back");
     card.setAttribute('id',newdata[i]["CharityID"])
 
 
@@ -41,13 +47,16 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var p=document.createElement("p");
     p.appendChild(desc);
 
-    card.appendChild(a);
-    card.appendChild(image);
-    card.appendChild(h3);
-    card.appendChild(p);
+    card_front.appendChild(a);
+    card_front.appendChild(image);
+    card_front.appendChild(h3);
+    card_back.appendChild(p);
 
-
+    // console.log(card);
     column.appendChild(card);
+    card.appendChild(content);
+    content.appendChild(card_front);
+    content.appendChild(card_back);
 
     var element=document.getElementById("row");
     element.appendChild(column);
