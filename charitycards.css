@@ -1,74 +1,109 @@
 .card {
-  flex: 1 0 20%;
+  /* flex: 1 0 20%; */
+  display: grid;
   position: relative;
   margin: .5em;
   padding: 2em;
   min-height: 4em;
   background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
- /* width: 50%; */
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-}
-
-img {
-  max-width: 80%;
-  height: auto;
-  padding: 10px;
-}
-.column {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
-}
-/* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
-.active {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 3px solid white;
+  overflow: hidden;
+  height: 400px;
+  opacity: 0.8;
+  align-items: center;
 }
 
 .inactive {
-  flex: 1 0 20%;
-  position: relative;
   margin: .5em;
   padding: 2em;
   min-height: 4em;
   background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 3px solid white;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
+  opacity: 0.6;
 }
 
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+h3{
+  font-size: 40px;
 }
-/* Add some padding inside the card container */
-/* .container {
-  padding: 2px 16px;
-} */
+p{
+  font-size: 20px;
+}
+.charityimg {
+  width: 100%;
+  height: 100%;
+
+}
+.column {
+  display: inline-block;
+  width: 20%;
+  height:25%;
+  overflow-x: scroll;
+}
+/* .row {margin: 0 -5px;
+  overflow: hidden;} */
+
+.active {
+ margin: .5em;
+ padding: 2em;
+ min-height: 4em;
+ background: white;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+ border-bottom: 8px solid #d86767;
+ /* word-wrap: break-word; */
+ /* overflow: auto; */
+ height: 500px;
+ height: 100px;
+ overflow: hidden;
+ opacity: 1;
+
+}
+
+.cardbutton_active {
+    width: 200px;
+    height: 100px;
+    border: 10px solid #000;
+    opacity: 1;
+    transition: 0.3s;
+    font-size: 30px;
+    background-color: steelblue;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.cardbutton_inactive {
+  width: 200px;
+  height: 100px;
+  border: 10px solid #000;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: grey;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.cardbutton{
+  width: 200px;
+  height: 100px;
+  border: 10px solid #000;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: grey;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+}
