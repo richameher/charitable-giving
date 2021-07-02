@@ -1,6 +1,7 @@
 .card {
   /* flex: 1 0 20%; */
-  /* position: relative; */
+  display: grid;
+  position: relative;
   margin: .5em;
   padding: 2em;
   min-height: 4em;
@@ -9,8 +10,9 @@
   transition: 0.3s;
   border: 3px solid white;
   overflow: hidden;
-  height: 100px;
-  opacity: 0.6;
+  height: 400px;
+  opacity: 0.8;
+  align-items: center;
 }
 
 .inactive {
@@ -23,56 +25,29 @@
   border: 3px solid white;
   overflow: hidden;
   height: 100px;
+  width: 100px;
   opacity: 0.6;
 }
 
-.card:hover {
-  box-shadow: 0 8px 8px 0 grey;
-  opacity: 1;
-  overflow: auto;
-  /* height: 500px; */
-}
-
-.inactive:hover {
-  box-shadow: 0 8px 8px 0 grey;
-  opacity: 1;
-  overflow: auto;
-  /* height: 500px; */
-}
-
 h3{
-  font-size: 30px;
+  font-size: 40px;
 }
 p{
   font-size: 20px;
 }
-img {
-  width: 30%;
-  height: auto;
-  padding: 10px;
-  float: right;
+.charityimg {
+  width: 100%;
+  height: 100%;
 
 }
 .column {
-  /* float: left; */
   display: inline-block;
-  width: 25%;
-  /* padding: 0 10px; */
-  height:100%;
-
-
+  width: 20%;
+  height:25%;
+  overflow-x: scroll;
 }
-.row {margin: 0 -5px;
-  overflow: hidden;}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-  height:100px;
-  overflow: scroll;
-}
-
+/* .row {margin: 0 -5px;
+  overflow: hidden;} */
 
 .active {
  margin: .5em;
@@ -83,13 +58,52 @@ img {
  transition: 0.3s;
  border-bottom: 8px solid #d86767;
  /* word-wrap: break-word; */
- /* overflow: auto;
- height: 500px; */
+ /* overflow: auto; */
+ height: 500px;
  height: 100px;
  overflow: hidden;
  opacity: 1;
 
 }
 
- /* word-wrap: break-word;
+.cardbutton_active {
+    width: 200px;
+    height: 100px;
+    border: 10px solid #000;
+    opacity: 1;
+    transition: 0.3s;
+    font-size: 30px;
+    background-color: steelblue;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.cardbutton_inactive {
+  width: 200px;
+  height: 100px;
+  border: 10px solid #000;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: grey;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.cardbutton{
+  width: 200px;
+  height: 100px;
+  border: 10px solid #000;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: grey;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
 }

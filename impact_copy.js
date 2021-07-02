@@ -60,6 +60,8 @@ function loadimpact(){
   var impact_text="If 100 people donate as much as you do, then collectively, your contributions help provide ";
 
 
+  var impacticons_cont = document.createElement("div");
+  impacticons_cont.classList.add("impacticons_cont");
   var impactcard = document.createElement("div");
   d3.csv("data/charities_list_clean.csv", function(dataset) {
 
@@ -75,7 +77,7 @@ function loadimpact(){
                 image_donate[entity]=1;
                 image.setAttribute("src", geticon(entity));
                 image.classList.add("icons");
-                impactcard.appendChild(image);
+                impacticons_cont.appendChild(image);
               }
 
 
@@ -121,6 +123,7 @@ function loadimpact(){
 
       para.setAttribute('id',"MAIN");
 
+      impactcard.appendChild(impacticons_cont);
       impactcard.appendChild(para);
       impactcard.classList.add("impactcard");
 

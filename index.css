@@ -52,7 +52,8 @@ div{
 .container{
   display:block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-  /* overflow: scroll; */
+  overflow-x: scroll;
+  overflow-y: hidden;
   height:700px;
   width: 2800px;
 
@@ -72,14 +73,21 @@ div{
   overflow:auto;
 
 }
+.impacticons_cont{
+  transition: 0.1s;
+  align-items: center;
+
+}
 #impactcard{
   float: right;
+  display: grid;
   transition: 0.1s;
   position: absolute;
   transform: translateX(50%);
 }
 #improw{
   padding: 1%;
+  display: grid;
   text-align:center;
 
 }
@@ -202,21 +210,6 @@ input[type=number]{
 
 #donatebutton:hover {border: 2px solid #fff;}
 
-#MAIN:hover {transition: 0.3s;
-font-size:40px;
-font-width:40px;}
-
-.wordcloudlab:hover{
-  transition: 0.3s;
-  font-size:140px;
-  font-width:140px;
-}
-
-.myLabel:hover{
-  transition: 0.5s;
-  font-size:30px;
-  font-width:140px;
-}
 
 #amount{
   font-size:30px;
@@ -224,6 +217,6 @@ font-width:40px;}
 }
 
 a[target="_blank"]:after {
-    float: left;
+    float: right;
     content: url("data/icons/external_link_icon.png");
 }
