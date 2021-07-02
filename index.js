@@ -79,12 +79,19 @@ var row = svg.selectAll(".row")
     row.append("text")
         .attr("class","matrixlabels")
         .attr("x", -10)
-        .attr("y", y.rangeBand() / 2)
+        .attr("y", 15)
         .attr("dy", ".32em")
         .attr("text-anchor", "end")
         .text(function(d, i) { return d; });
 
 
+        row.append("svg:image")
+        .attr('z-index', 1)
+        .attr("x", -85)
+        .attr("y", 30)
+        .attr('width', 85)
+        .attr('height', 85)
+        .attr("xlink:href", "data/india.svg")
 
 row.selectAll(".cell")
     .data(matrix)
