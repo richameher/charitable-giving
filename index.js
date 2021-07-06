@@ -76,13 +76,37 @@ var row = svg.selectAll(".row")
     row.append("line")
         .attr("x2", width);
 
-    row.append("text")
-        .attr("class","matrixlabels")
-        .attr("x", -10)
-        .attr("y", y.rangeBand() / 2)
-        .attr("dy", ".32em")
-        .attr("text-anchor", "end")
-        .text(function(d, i) { return d; });
+    // row.append("text")
+    //     .attr("class","matrixlabels")
+    //     .attr("x", -10)
+    //     .attr("y", 15)
+    //     .attr("dy", ".32em")
+    //     .attr("text-anchor", "end")
+    //     .text(function(d, i) { return d; });
+
+    svg.selectAll("#row0").append("svg:image")
+        .attr('z-index', 1)
+        .attr("x", -85)
+        .attr("y", 30)
+        .attr('width', 80)
+        .attr('height', 85)
+        .attr("xlink:href", "data/icons/SouthIndia.svg");
+
+    svg.selectAll("#row1").append("svg:image")
+        .attr('z-index', 1)
+        .attr("x", -85)
+        .attr("y", 30)
+        .attr('width', 80)
+        .attr('height', 85)
+        .attr("xlink:href", "data/icons/NorthIndia.svg");
+
+    svg.selectAll("#row2").append("svg:image")
+        .attr('z-index', 1)
+        .attr("x", -85)
+        .attr("y", 30)
+        .attr('width', 80)
+        .attr('height', 85)
+        .attr("xlink:href", "data/icons/CentralIndia.svg");
 
 
 
@@ -95,6 +119,7 @@ row.selectAll(".cell")
     .attr("x", function(d, i) { return x(i); })
     .attr("width", x.rangeBand())
     .attr("height", y.rangeBand());
+
 
 
 var column = svg.selectAll(".column")
@@ -110,8 +135,10 @@ column.append("text")
     .attr("class","matrixlabels")
     .attr("x", 6)
     .attr("y", -20)
+    .attr("dx", "2.5em")
     .attr("dy", ".32em")
     .attr("text-anchor", "start")
+    .attr("text-align", "center")
     .attr("transform", "rotate(90)")
     .text(function(d, i) { return d; });
 
