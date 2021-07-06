@@ -31,6 +31,9 @@ h1{
   text-align: center;
   border-radius: 15px;
 }
+#header_button:hover{
+  border: 2px solid #fff;
+}
 h2{
   font-size: 35px;
   font-family: 'Montserrat', sans-serif;
