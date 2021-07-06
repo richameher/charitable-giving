@@ -1,6 +1,6 @@
 .card {
   /* flex: 1 0 20%; */
-  display: grid;
+  display: inline-grid;
   position: relative;
   margin: .5em;
   padding: 2em;
@@ -10,7 +10,7 @@
   transition: 0.3s;
   border: 3px solid white;
   overflow: hidden;
-  height: 450px;
+  height: 500px;
   opacity: 1;
   align-items: center;
   border-radius: 15px;
@@ -19,14 +19,18 @@
 p{
   font-size: 20px;
 }
+#row{
+  width: 1600px;
+  height: auto;
+}
 .charityimg {
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 140px;
 
 }
 .column {
   display: inline-block;
-  width: 20%;
+  width: auto;
   height:25%;
 }
 .cardbutton_active {
@@ -54,6 +58,7 @@ p{
   color: white;
   text-align: center;
   border-radius: 20px;
+
 }
 
 .cardbutton{

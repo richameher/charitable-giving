@@ -15,11 +15,11 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     if (newdata[i]["region"]==region && newdata[i]["Cause"]==causes )
     {
-    var desc = document.createTextNode(newdata[i]["description"].substr(0,maxlength)+ "...");
+    // var desc = document.createTextNode(newdata[i]["description"].substr(0,maxlength)+ "...");
 
-    var name = document.createTextNode(newdata[i]["Name"].substr(0,15));
+    // var name = document.createTextNode(newdata[i]["Name"].substr(0,15));
 
-    var cause = document.createTextNode(newdata[i]["Cause"]);
+    // var cause = document.createTextNode(newdata[i]["Cause"]);
 
     let getcharityimglink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     var image = document.createElement("IMG");
@@ -44,19 +44,19 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     // card.setAttribute('id',newdata[i]["CharityID"])
 
 
-    var h3=document.createElement("h3");
-    h3.appendChild(name);
+    // var h3=document.createElement("h3");
+    // h3.appendChild(name);
 
-    var p=document.createElement("p");
-    p.appendChild(desc);
+    // var p=document.createElement("p");
+    // p.appendChild(desc);
 
     var card = document.createElement("div");
     card.classList.add("card");
 
     card.appendChild(a);
     card.appendChild(image);
-    card.appendChild(h3);
-    card.appendChild(p);
+    // card.appendChild(h3);
+    // card.appendChild(p);
 
     card.appendChild(card_button);
     column.appendChild(card);
