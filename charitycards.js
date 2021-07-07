@@ -1,4 +1,3 @@
-
 function load_charity()
 {
 d3.selectAll('div.column').remove();
@@ -34,7 +33,15 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var column = document.createElement("div");
     column.classList.add("column");
 
-
+    var card = document.createElement("div");
+    card.classList.add("card");
+    var content = document.createElement("div");
+    content.classList.add("content");
+    var card_front = document.createElement("div");
+    var card_back = document.createElement("div");
+    card_front.classList.add("card_front");
+    card_back.classList.add("card_back");
+    // card.setAttribute('id',newdata[i]["CharityID"])
 
     var card_button = document.createElement("button");
     card_button.classList.add("cardbutton");
@@ -46,20 +53,23 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     // var h3=document.createElement("h3");
     // h3.appendChild(name);
-
-    // var p=document.createElement("p");
-    // p.appendChild(desc);
+    var desc = document.createTextNode("abcd")
+    var p=document.createElement("p");
+    p.appendChild(desc);
 
     var card = document.createElement("div");
     card.classList.add("card");
 
     card.appendChild(a);
-    card.appendChild(image);
-    // card.appendChild(h3);
+    card_front.appendChild(image);
+    card_back.appendChild(p);
     // card.appendChild(p);
 
-    card.appendChild(card_button);
     column.appendChild(card);
+    card.appendChild(content);
+    content.appendChild(card_front);
+    content.appendChild(card_back);
+    card.appendChild(card_button);
 
     var element=document.getElementById("row");
     element.appendChild(column);
