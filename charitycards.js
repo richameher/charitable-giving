@@ -61,6 +61,7 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     card.classList.add("card");
 
     card.appendChild(a);
+    // card_back.appendChild(a);
     card_front.appendChild(image);
     card_back.appendChild(p);
     // card.appendChild(p);
@@ -69,6 +70,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     card.appendChild(content);
     content.appendChild(card_front);
     content.appendChild(card_back);
+    // card_front.appendChild(card_button);
+    // card_back.appendChild(card_button);
     card.appendChild(card_button);
 
     var element=document.getElementById("row");

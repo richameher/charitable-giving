@@ -7,7 +7,7 @@
   min-height: 4em;
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+  transition: 2.3s;
   border: 3px solid white;
   overflow: hidden;
   height: 500px;
@@ -17,17 +17,15 @@
 }
 
 .content {
-  /* position: absolute; */
   width: 100%;
   height: 100%;
-  /* margin:30px 50px 30px 50px; */
-  transition: transform 0s;
+  transition: transform 2.30s;
   transform-style: preserve-3d;
 }
 
 .card:hover .content  {
   transform: rotateY( 180deg ) ;
-  transition: transform 0.0s;
+  transition: transform 2.30s;
 }
 
 .card_front,
@@ -42,6 +40,7 @@
 }
 
 .card_back {
+  /* background-color: black */
   transform: rotateY( 180deg );
     transition: transform 0.0s;
 }
