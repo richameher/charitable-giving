@@ -1,11 +1,25 @@
 // parameters- keywords for charity selected, ratios
 // no return, draw a wordcloud
 
-var svgcommon = d3.select("#wordcloud").append("svg").attr({ width: 920, height: 800 });
+var svgcommon = d3.select("#wordcloud")
+                .append("svg")
+                .attr({ width: 920, height: 800 })
+                .classed("grid-container", true);
+
+var grid = svgcommon.append("g")
+  .attr("id", "grid")
+  .attr("class", "grid");
 function remove_keywords()
 {
   d3.select("#wordcloud").select("svg").remove();
-  svgcommon = d3.select("#wordcloud").append("svg").attr({ width: 920, height: 800 });
+  svgcommon = d3.select("#wordcloud")
+                  .append("svg")
+                  .attr({ width: 920, height: 800 })
+                  .classed("grid-container", true);
+
+  grid = svgcommon.append("g")
+    .attr("id", "grid")
+    .attr("class", "grid");
 }
 
 function random(pt){
@@ -42,7 +56,7 @@ d3.csv("data/keyword_images.csv", function(dataset) {
               if (!document.getElementById(elid))
               {
                 // var imgs = svgcommon.selectAll("image").data([0]);
-                    svgcommon
+                    grid
                     .append("svg:image")
                     .attr('x', random(1))
                     .attr('y',random(0))

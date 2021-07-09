@@ -273,7 +273,7 @@ else if(number_charities==1){
 
 
 }
-else{
+else if(number_charities>4){
   console.log("Do nothing");
   data[0] = { x: init[0], y: init[1] };
 
