@@ -9,6 +9,7 @@ body{
     /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
 h1{
+  margin-top: 0.5em;
   font-size: 60px;
   font-family: 'Montserrat', sans-serif;
   font-weight:300;
@@ -17,13 +18,14 @@ h1{
   /* margin: auto; */
   color: #20639B;
   text-align: center;
+  letter-spacing: 10px;
   /* width: 2800px;s */
 }
 
 #header_button{
-  width: 33%;
+  width: 33.2%;
   height: 100px;
-  border: 10px solid #fff;
+  border: 1px solid #fff;
   transition: 0.3s;
   font-size: 35px;
   font-weight: bold;
@@ -32,10 +34,11 @@ h1{
   font-family: 'Montserrat', sans-serif;
   color: white;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 7px;
 }
 #header_button:hover{
   border: 2px solid #fff;
+  letter-spacing: 10px;
 }
 h2{
   font-size: 35px;
@@ -116,9 +119,10 @@ div{
   transform: translateX(50%);
 }
 #improw{
-  padding: 1%;
+  margin-right: 2.4em;
   display: grid;
   text-align:center;
+  justify-content: center;
 
 }
 #wordcloud {
@@ -212,6 +216,7 @@ input[type=number]{
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
+  letter-spacing: 2px;
 }
 
 .icons{
@@ -231,7 +236,7 @@ input[type=number]{
     /* opacity: 0.6; */
     transition: 0.3s;
     font-size: 30px;
-    background-color: steelblue;
+    background: rgb(90 108 136);
     font-family: 'Montserrat', sans-serif;
     color: white;
     text-align: center;
@@ -239,7 +244,12 @@ input[type=number]{
 }
 
 
-#donatebutton:hover {border: 2px solid #fff;}
+#donatebutton:hover {
+  border: 2px solid #fff;
+  letter-spacing: 5px;
+  background: rgb(90 108 136);
+
+}
 
 
 #amount{
