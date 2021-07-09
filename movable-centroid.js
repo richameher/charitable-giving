@@ -70,10 +70,10 @@ for (var i = 0; i < number_charities; i++) {
   numbers[i]=(donateamount*(ratios[i])).toFixed(2);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
-       .attr('font-size',33 )
+       .attr('font-size',init_fontsize )
        // .attr('opacity',fontsizes[i]/33)
        .attr("class", "myLabel")//easy to style with CSS
-       .text(char_names[i]+"\n Rs"+parseInt(numbers[i]));
+       .text(char_names[i]+"\n Rs "+parseInt(numbers[i]));
   }
   changeimpact(numbers,char_id_map);
 
@@ -110,7 +110,7 @@ function updatePath(){
     for (var i = 0; i < number_charities; i++) {
     paths[i].attr('d', lineFunction(ldist[i]))
     .attr('stroke','#20639B')
-    .attr('stroke-width','20px');
+    .attr('stroke-width','25px');
 
   }
 }
@@ -146,13 +146,13 @@ function updateCircle(){
 var height_ctr=d3.select("svg").attr("height");
 var width_ctr=d3.select("svg").attr("width");
 var text_x,text_y=0;
-var init=[width_ctr/2,400];
-var init_fontsize=20;
+var init=[(width_ctr/2)+100,400];
+var init_fontsize=25;
 function start(){
 if (number_charities==3) {
-  data[3] = { x: init[0]+200, y: init[1]-200 };
-  data[1] = { x: init[0], y: init[1]+200 };
-  data[2] = { x: init[0]-200, y: init[1]-200 };
+  data[3] = { x: init[0]+300, y: init[1]-300 };
+  data[1] = { x: init[0], y: init[1]+300 };
+  data[2] = { x: init[0]-300, y: init[1]-300 };
   data[0] = { x: init[0], y: init[1] };
 
 for (var i = 1; i <= number_charities; i++) {
@@ -183,8 +183,8 @@ for (var i = 1; i <= number_charities; i++) {
 }
 }
 else if(number_charities==2){
-  data[1] = { x: init[0], y: init[1]-200 };
-  data[2] = { x: init[0], y: init[1]+200 };
+  data[1] = { x: init[0], y: init[1]-300 };
+  data[2] = { x: init[0], y: init[1]+300 };
   data[0] = {  x: init[0], y: init[1] };
 
   for (var i = 1; i <= number_charities; i++) {
@@ -216,10 +216,10 @@ else if(number_charities==2){
 }
 }
 else if(number_charities==4){
-  data[1] = { x: init[0]-200, y: init[1]+200 };
-  data[2] = { x: init[0]-200, y: init[1]-200 };
-  data[3] = { x: init[0]+200, y: init[1]+200 };
-  data[4] = { x: init[0]+200, y: init[1]-200 };
+  data[1] = { x: init[0]-300, y: init[1]+300 };
+  data[2] = { x: init[0]-300, y: init[1]-300 };
+  data[3] = { x: init[0]+300, y: init[1]+300 };
+  data[4] = { x: init[0]+300, y: init[1]-300 };
   data[0] = { x: init[0], y: init[1] };
 
 
@@ -227,18 +227,18 @@ else if(number_charities==4){
 
         if (data[i].y > data[0].y )
         {
-          text_y= data[i].y+40;
+          text_y= data[i].y+45;
         }
         else {
-          text_y= data[i].y-40;
+          text_y= data[i].y-45;
         }
 
         if (data[i].x > data[0].x )
         {
-          text_x= data[i].x-40;
+          text_x= data[i].x-45;
         }
         else {
-          text_x= data[i].x+40;
+          text_x= data[i].x+45;
         }
   svg.append("text")
      .attr('id','textelement'+i)
@@ -263,7 +263,7 @@ else if(number_charities==1){
      .attr('font-size',40 )
      .attr('font-color','grey')
      .attr("class", "myLabel")//easy to style with CSS
-     .text(char_names[0]+" Rs"+donateamount);
+     .text(char_names[0]+" Rs "+donateamount);
 
      var circle = svg.selectAll('circle').data(data);
      circle.enter().append('circle').attr('r', 0).transition().duration(500).attr('r', 30);
@@ -272,6 +272,20 @@ else if(number_charities==1){
            .style('fill','grey');
 
 
+}
+else{
+  console.log("Do nothing");
+  data[0] = { x: init[0], y: init[1] };
+
+  svg.append("text")
+     .attr('id','textelementmain')
+     .attr("y", init[1]+100)//magic number here
+     .attr("x", init[0])
+     .attr('text-anchor', 'middle')
+     .attr('font-size',40 )
+     .attr('font-color','grey')
+     .attr("class", "myLabel")//easy to style with CSS
+     .text("Select upto 4 charities only.");
 }
 }
 

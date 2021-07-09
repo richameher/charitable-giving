@@ -1,8 +1,11 @@
 body{
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(253 254 255);
-    height: 100%;
+    height: 102vh;
     font-weight:300;
+    width: 100%;
+    overflow-y: hidden;
+    hei
     /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
 h1{
@@ -14,11 +17,11 @@ h1{
   /* margin: auto; */
   color: #20639B;
   text-align: center;
-  width: 2800px;
+  /* width: 2800px;s */
 }
 
 #header_button{
-  width: 26.5%;
+  width: 33%;
   height: 100px;
   border: 10px solid #fff;
   transition: 0.3s;
@@ -68,31 +71,34 @@ div{
 .container{
   display:block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-  /* overflow-y: hidden; */
+  overflow: hidden;
   height:700px;
-  width: 2800px;
+  width: 99%;
+  margin: auto;
 
 }
 .container-vertical{
   display:inline-block;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   height: 900px;
-  width: 2800px;
+  width: 99%;
+  margin: 0.2em;
+
 
 }
 #cards{
-  /* display:block; */
-  width: 58%;
-  transition: 0.5s;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
+  width: 65%;
+  /* transition: 0.5s; */
   height:700px;
-  overflow:auto;
+  overflow-y:hidden;
 
 
 }
 
 #matrix{
   padding: 1%;
-  width: 40%;
+  width: 31%;
   transition: 0.5s;
   height:100%;
 
@@ -122,6 +128,8 @@ div{
   transition: 0.3s;
   width: 30%;
   height:100%;
+  position: absolute;
+  z-index: 9;
   }
 #polygon{
   /* margin-right: 1%; */
@@ -168,7 +176,7 @@ input[type=number]{
   stroke-width: 10;
   fill: #e07b7b;
   r:40;
-  transition: 0.1s;
+  /* transition: 0.1s; */
 }
 
 .centroid:hover{
@@ -179,10 +187,12 @@ input[type=number]{
   /* transition: 0.1s; */
 }
 /* Richa:This is not working */
-#myLabel{
-  margin: 70px;
+.myLabel{
+  margin: 0.2em;
   border: 1px solid #4CAF50;
   text-emphasis-color: red;
+  font-weight: 450;
+
 }
 
 .cell{
@@ -205,13 +215,11 @@ input[type=number]{
 }
 
 .icons{
+  position: relative;
   width: 20%;
   height: auto;
   float:left;
-  transition: 0.1s;
-}
-.icons:hover{
-  width: 30%;
+  margin: 1em;
 }
 
 #donatebutton {
@@ -239,7 +247,19 @@ input[type=number]{
   float: left;
 }
 
-a[target="_blank"]:after {
-    float: right;
-    content: url("data/icons/external_link_icon.png");
+.keywordImg{
+  border-radius: 50%;
+}
+
+.keywordImg:hover{
+  width: 30%;
+  height: auto;
+  transition: 0.5s;
+  z-index: 3;
+}
+
+#MAIN{
+  font-size: 40px;
+  margin: 0.2em;
+  letter-spacing: 2px;
 }

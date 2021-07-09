@@ -9,22 +9,23 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
   var region=sessionStorage.getItem("regioninfo");
   var causes=sessionStorage.getItem("cause");
   var preselect=sessionStorage.getItem("preselect");
-  var maxlength=40;
+  var maxlength=300;
 
   for (i = 0; i < newdata.length; i++) {
 
     if (newdata[i]["region"]==region && newdata[i]["Cause"]==causes )
     {
-    // var desc = document.createTextNode(newdata[i]["description"].substr(0,maxlength)+ "...");
+    var desc = document.createTextNode(newdata[i]["description"].substr(0,maxlength)+ "...");
 
     // var name = document.createTextNode(newdata[i]["Name"].substr(0,15));
 
-    // var cause = document.createTextNode(newdata[i]["Cause"]);
+    var last_updated = document.createTextNode("Last Updated on "+newdata[i]["info_last_updated"]);
 
     let getcharityimglink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     var image = document.createElement("IMG");
     image.classList.add("charityimg");
     image.setAttribute("src", getcharityimglink);
+
 
     let getcharitylink = newdata[i]["web_link"];
     var a = document.createElement("a");
@@ -34,8 +35,6 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     var column = document.createElement("div");
     column.classList.add("column");
 
-
-
     var card_button = document.createElement("button");
     card_button.classList.add("cardbutton");
     card_button.appendChild(document.createTextNode("Select"));
@@ -44,21 +43,32 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
     // card.setAttribute('id',newdata[i]["CharityID"])
 
 
-    // var h3=document.createElement("h3");
-    // h3.appendChild(name);
+    var card_desc= document.createElement("div");
+    card_desc.classList.add("card_desc");
+
+    var p=document.createElement("p");
+    p.appendChild(desc);
+
 
     // var p=document.createElement("p");
     // p.appendChild(desc);
 
     var card = document.createElement("div");
     card.classList.add("card");
+    card.setAttribute('id',"card"+newdata[i]["CharityID"])
+
 
     card.appendChild(a);
     card.appendChild(image);
+    card.appendChild(last_updated);
+    card_desc.appendChild(p);
+
+    card.append(card_desc);
     // card.appendChild(h3);
     // card.appendChild(p);
 
     card.appendChild(card_button);
+
     column.appendChild(card);
 
     var element=document.getElementById("row");
@@ -87,11 +97,19 @@ if (preselect==1)
     document.getElementById(name).innerHTML="Select";
     delete active_charities[name];
   }
+
   sessionStorage.setItem('SelectedCharities',JSON.stringify(active_charities));
   load_polygon();
   removeimpact();
   loadimpact();
   });
+
+  // d3.selectAll('.card')
+  // .on('mouseover',function(){
+  //   // d3.select(this).select(".text").remove();
+  //   d3.select(this).selectAll(".charityimg")
+  //   .style("width","10%");
+  // });
 
 });
 }

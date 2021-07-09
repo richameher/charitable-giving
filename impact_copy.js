@@ -182,5 +182,5 @@ function changeimpact(donationamt,char_id_map){
 
 function replace_impact_str(replace_str)
 {
-  return replace_str.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")+" for COVID-19 Relief";
+  return replace_str.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")+" for COVID-19 Relief.";
 }
