@@ -105,12 +105,12 @@ function loadimpact(){
         }
 
         for (var entkey in donate_amnt_entities) {
-          if (donate_amnt_entities.hasOwnProperty(entkey)) {
+          if (donate_amnt_entities.hasOwnProperty(entkey) && parseInt(donate_amnt_entities[entkey]) >= 1) {
               impact_text=impact_text+" "+ donate_amnt_entities[entkey];
               if (parseInt(donate_amnt_entities[entkey]) >= 1 && entkey!='cash' && !entkey.endsWith("s")){
                   entkey=entkey+"s";
               }
-              else {
+              else if(entkey==='cash'){
                 entkey="Rs Cash Relief";
               }
               impact_text=impact_text+" "+" "+entkey.split("_").join(" ")+",";
@@ -163,7 +163,7 @@ function changeimpact(donationamt,char_id_map){
 
       ////console.log(donate_amnt_entities);
       for (var entkey in donate_amnt_entities) {
-        if (donate_amnt_entities.hasOwnProperty(entkey)) {
+        if (donate_amnt_entities.hasOwnProperty(entkey) && parseInt(donate_amnt_entities[entkey]) >= 1) {
             desc=desc+" "+ donate_amnt_entities[entkey];
             if (parseInt(donate_amnt_entities[entkey]) >= 1 && entkey!='cash' && !entkey.endsWith("s")){
                 entkey=entkey+"s";
