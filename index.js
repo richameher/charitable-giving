@@ -185,9 +185,9 @@ function select_default_cell(){
   sessionStorage.setItem("cause", 0);
   sessionStorage.setItem("preselect", 1);
   var active_charities={};
-  active_charities["12"]=1;
-  active_charities["28"]=1;
-  active_charities["17"]=1;
+  active_charities["5"]=1;
+  active_charities["10"]=1;
+  active_charities["21"]=1;
   sessionStorage.setItem("SelectedCharities",JSON.stringify(active_charities));
   load_charity();
   load_polygon();

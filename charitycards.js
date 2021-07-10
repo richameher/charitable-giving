@@ -15,12 +15,12 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     if (newdata[i]["region"]==region && newdata[i]["Cause"]==causes )
     {
-    var desc = document.createTextNode(newdata[i]["description"].substr(0,maxlength)+ "...");
+    var desc = document.createTextNode(newdata[i]["hari_description"]);
 
     // var name = document.createTextNode(newdata[i]["Name"].substr(0,15));
 
     var last_updated = document.createTextNode("Last Updated on "+newdata[i]["info_last_updated"]);
-    var incpt_date = document.createTextNode(" | Started in "+newdata[i]["Inception_Date"]);
+    var incpt_date = document.createTextNode(" | Started "+newdata[i]["Inception_Date"]+" ago");
 
     let getcharityimglink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     var image = document.createElement("IMG");
@@ -118,6 +118,7 @@ if (preselect==1)
 
 function preselect_cards(obj){
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
+console.log(active_charities);
 
 for (var key in active_charities) {
     if (active_charities.hasOwnProperty(key)) {

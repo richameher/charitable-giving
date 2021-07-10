@@ -30,14 +30,20 @@ var svg = d3.select("#polygon").append("svg").attr({ width: 1200, height: 800 })
 let char_names=[];
 let char_keywords=[];
 let char_id_map=[];
+let charityidTocampid={};
 
 for (var key in active_charities) {
     if (active_charities.hasOwnProperty(key)) {
       char_names.push(dataset[key-1]["Name"]); //check if charityid starts from 0
       char_keywords.push(dataset[key-1]["KeyWords"]);
       char_id_map.push(dataset[key-1]["CharityID"]);
+      charityidTocampid[key]=dataset[key-1]["CampaignID"];
       }
     }
+
+sessionStorage.setItem("charityidTocampid", JSON.stringify(charityidTocampid));
+
+console.log("Active Charities to CampaignID",charityidTocampid);
 
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
