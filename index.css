@@ -1,20 +1,275 @@
 body{
-    font-family: Arial;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(253 254 255);
+    height: 102vh;
+    font-weight:300;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
 h1{
-    color: #0099FF;
+  margin-top: 0.5em;
+  font-size: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:300;
+  height: 60px;
+  /* width: 2800px; */
+  /* margin: auto; */
+  color: #20639B;
+  text-align: center;
+  letter-spacing: 10px;
+  /* width: 2800px;s */
 }
-p{
-    color: #000000;
+
+#header_button{
+  width: 33.2%;
+  height: 100px;
+  border: 1px solid #fff;
+  transition: 0.3s;
+  font-size: 35px;
+  font-weight: bold;
+  font-weight:300;
+  background-color: rgb(90 108 136);
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
 }
-tr{
-    background-color: #FF8448;
+#header_button:hover{
+  border: 2px solid #fff;
+  letter-spacing: 10px;
+}
+h2{
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+  margin: 20px;
+  font-weight: 300;
+  color: rgb(90 108 136);
+  /* text-shadow: 1px 0px #000080; */
+  /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
+  transition: 0.2s;
+}
+
+.step{
+  float: left;
+}
+
+h3{
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  margin: auto;
+  padding-top: 3%;
+  font-weight:300;
+  /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
+  transition: 0.2s;
 
 }
-td{
-    background-color: #0099FF;
+div{
+    display: inline-block;
+    text-align: left;
+    /* box-shadow: 0 0 6px 0 rgba(0,0,0,0.2); */
+}
+
+.container{
+  display:block;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
+  height:700px;
+  width: 99%;
+  margin: auto;
 
 }
-table{
-    color: #000;
+.container-vertical{
+  display:inline-block;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  height: 900px;
+  width: 99%;
+  margin: 0.2em;
+
+
+}
+#cards{
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
+  width: 65%;
+  /* transition: 0.5s; */
+  height:700px;
+  overflow-y:hidden;
+
+
+}
+
+#matrix{
+  padding: 1%;
+  width: 31%;
+  transition: 0.5s;
+  height:100%;
+
+}
+.impacticons_cont{
+  transition: 0.1s;
+  align-items: center;
+
+}
+#impactcard{
+  float: left;
+  display: grid;
+  transition: 0.1s;
+  position: absolute;
+  transform: translateX(50%);
+}
+#improw{
+  margin-right: 2.4em;
+  display: grid;
+  text-align:center;
+  justify-content: center;
+
+}
+#wordcloud {
+  /* padding: 0.5%; */
+  /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+  display:inline-block;
+  transition: 0.3s;
+  width: 30%;
+  height:100%;
+  position: absolute;
+  z-index: 9;
+  }
+#polygon{
+  /* margin-right: 1%; */
+  /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+
+  transition: 0.5s;
+  width: 40%;
+  height:100%;
+}
+#impactdiag {
+  /* padding: 1%; */
+  /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+  display:inline-block;
+  float: right;
+  transition: 0.3s;
+  padding-left: 1%;
+  width: 20%;
+  height:100%;
+  }
+
+#input_div{
+  display: flex;
+
+}
+input[type=number]{
+  font-family: 'Montserrat', sans-serif;
+  border: 10px solid #fff;
+  border-bottom: 10px solid #ccc;
+  border-radius: 10px;
+  font-size: 10px;
+  float: left;
+}
+
+.circle2{
+  stroke:white;
+  stroke-width: 10;
+  fill: #dacece;
+  r:20;
+  transition: 0.1s;
+}
+
+.centroid{
+  stroke:white;
+  stroke-width: 10;
+  fill: #e07b7b;
+  r:40;
+  /* transition: 0.1s; */
+}
+
+.centroid:hover{
+  stroke:white;
+  stroke-width: 10;
+  fill: #e07b7c;
+  r:50;
+  /* transition: 0.1s; */
+}
+/* Richa:This is not working */
+.myLabel{
+  margin: 0.2em;
+  border: 1px solid #4CAF50;
+  text-emphasis-color: red;
+  font-weight: 450;
+
+}
+
+.cell{
+  stroke:white;
+  stroke-width: 10;
+  transition: 0.3s;
+}
+
+.cell:hover{
+  stroke:white;
+  stroke-width:15;
+  transition: 0.1s;
+
+}
+
+.matrixlabels{
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+.icons{
+  position: relative;
+  width: 20%;
+  height: auto;
+  float:left;
+  margin: 1em;
+}
+
+#donatebutton {
+    transform: translateX(6%);
+    transform: translateY(6%);
+    width: 300px;
+    height: 100px;
+    border: 10px solid #fff;
+    /* opacity: 0.6; */
+    transition: 0.3s;
+    font-size: 30px;
+    background: rgb(90 108 136);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+}
+
+
+#donatebutton:hover {
+  border: 2px solid #fff;
+  letter-spacing: 5px;
+  background: rgb(90 108 136);
+
+}
+
+
+#amount{
+  font-size:30px;
+  float: left;
+}
+
+.keywordImg{
+  border-radius: 50px;
+}
+
+.keywordImg:hover{
+  width: 40%;
+  height: auto;
+  transition: 0.5s;
+  z-index: 3;
+}
+
+#MAIN{
+  font-size: 40px;
+  margin: 0.2em;
+  letter-spacing: 2px;
 }
