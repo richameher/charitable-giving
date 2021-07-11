@@ -1,9 +1,22 @@
 
+function remove_polygon()
+{
+d3.select("#polygon").select("svg").remove();
+remove_keywords();
+}
+function load_polygon()
+{
 d3.csv("data/charities_list_clean.csv", function(dataset) {
 var active_charities=JSON.parse(sessionStorage.getItem("SelectedCharities"));
 var number_charities=Object.keys(active_charities).length;
+var donateamount=JSON.parse(sessionStorage.getItem("donateamount"));
+if (donateamount==null){
+ donateamount=1000;
+ sessionStorage.setItem("donateamount", donateamount);
+}
 
-var svg = d3.select("body").append("svg").attr({ width: 2400, height: 1000 }),
+remove_polygon();
+var svg = d3.select("#polygon").append("svg").attr({ width: 1200, height: 800 }),
     data = [],
     lineFunction = d3.svg.line()
         .x(function (data) {
@@ -15,16 +28,22 @@ var svg = d3.select("body").append("svg").attr({ width: 2400, height: 1000 }),
      paths=[],path,path1,path2, isDown = false, count=0, l1_dist=0,l2_dist=0,l3_dist=0;
 
 let char_names=[];
+let char_keywords=[];
+let char_id_map=[];
+let charityidTocampid={};
 
-  var newdata=[]
-  for (var key in active_charities) {
-      if (active_charities.hasOwnProperty(key)) {
-        newdata.push(dataset[key-1]["Name"]);
-        }
+for (var key in active_charities) {
+    if (active_charities.hasOwnProperty(key)) {
+      char_names.push(dataset[key-1]["Name"]); //check if charityid starts from 0
+      char_keywords.push(dataset[key-1]["KeyWords"]);
+      char_id_map.push(dataset[key-1]["CharityID"]);
+      charityidTocampid[key]=dataset[key-1]["CampaignID"];
       }
-  for (var i = 0; i < number_charities; i++) {
-    char_names[i]=newdata[i];
-}
+    }
+
+sessionStorage.setItem("charityidTocampid", JSON.stringify(charityidTocampid));
+
+console.log("Active Charities to CampaignID",charityidTocampid);
 
 
 var dragP = d3.behavior.drag().on('drag', dragPath),
@@ -53,13 +72,16 @@ function updatetext(fontsizes,ratios){
 var numbers=[];
 
 for (var i = 0; i < number_charities; i++) {
-  numbers[i]=1000*(ratios[i]);
+
+  numbers[i]=(donateamount*(ratios[i])).toFixed(2);
   svg.selectAll('#textelement'+(i+1))
        .attr('text-anchor', 'middle')
-       .attr('font-size',fontsizes[i] )
+       .attr('font-size',init_fontsize )
+       // .attr('opacity',fontsizes[i]/33)
        .attr("class", "myLabel")//easy to style with CSS
-       .text(char_names[i]+" Rs"+parseInt(numbers[i]));
+       .text(char_names[i]+"\n Rs "+parseInt(numbers[i]));
   }
+  changeimpact(numbers,char_id_map);
 
 }
 function updatePath(){
@@ -81,19 +103,20 @@ function updatePath(){
 
   }
     var ratios=get_ratios(l3_dist);
+
+    initial_keywords(ratios,char_id_map);
+
+
     var fontsizes=[]
-    console.log("Ratios",ratios);
     for (var i = 0; i < number_charities; i++) {
-    fontsizes[i]=100*ratios[i];
+    fontsizes[i]=(init_fontsize*3)*ratios[i];
   }
     updatetext(fontsizes,ratios);
 
-    console.log(ldist);
     for (var i = 0; i < number_charities; i++) {
-    console.log(ldist[i]);
     paths[i].attr('d', lineFunction(ldist[i]))
     .attr('stroke','#20639B')
-    .attr('stroke-width','20px');
+    .attr('stroke-width','25px');
 
   }
 }
@@ -126,67 +149,149 @@ function updateCircle(){
           .attr('cy', function(d) { return d.y; });
 }
 
-var init=[600,10];
-
+var height_ctr=d3.select("svg").attr("height");
+var width_ctr=d3.select("svg").attr("width");
+var text_x,text_y=0;
+var init=[(width_ctr/2)+100,400];
+var init_fontsize=25;
 function start(){
 if (number_charities==3) {
-  data[3] = { x: init[0]-100, y: init[1]+100 };
-  data[1] = { x: init[0]+273, y: init[1]+732 };
-  data[2] = { x: init[0]+732, y: init[1]+273 };
-  var centrx= (init[0]+init[0]+init[0]-100+273+732)/3;
-  var centry= (init[1]+init[1]+init[1]+100+732+273)/3;
-  data[0] = { x: centrx, y: centry };
+  data[3] = { x: init[0]+300, y: init[1]-300 };
+  data[1] = { x: init[0], y: init[1]+300 };
+  data[2] = { x: init[0]-300, y: init[1]-300 };
+  data[0] = { x: init[0], y: init[1] };
 
 for (var i = 1; i <= number_charities; i++) {
+  if (data[i].y > data[0].y )
+  {
+    text_y= data[i].y+40;
+  }
+  else {
+    text_y= data[i].y-40;
+  }
+
+  if (data[i].x > data[0].x )
+  {
+    text_x= data[i].x-40;
+  }
+  else {
+    text_x= data[i].x+40;
+  }
+
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
-     .attr('font-size',33 )
+     .attr('font-size',init_fontsize )
      .attr("class", "myLabel")
      .text(char_names[i-1]);
 }
 }
 else if(number_charities==2){
-  data[1] = { x: init[0], y: init[1]+732 };
-  data[2] = { x: init[0], y: init[1]+273 };
-  var centrx= (init[0]+init[0])/2;
-  var centry= (init[1]+init[1]+732+273)/2;
-  data[0] = { x: centrx, y: centry };
+  data[1] = { x: init[0], y: init[1]-300 };
+  data[2] = { x: init[0], y: init[1]+300 };
+  data[0] = {  x: init[0], y: init[1] };
 
   for (var i = 1; i <= number_charities; i++) {
+
+    if (data[i].y > data[0].y )
+    {
+      text_y= data[i].y+40;
+    }
+    else {
+      text_y= data[i].y-40;
+    }
+
+    if (data[i].x > data[0].x )
+    {
+      text_x= data[i].x-20;
+    }
+    else {
+      text_x= data[i].x+20;
+    }
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
-     .attr('font-size',33 )
+     .attr('font-size',init_fontsize )
      .attr("class", "myLabel")//easy to style with CSS
      .text(char_names[i-1]);
 
 }
 }
 else if(number_charities==4){
-  data[1] = { x: init[0]+273, y: init[1]+732 };
-  data[2] = { x: init[0], y: init[1]+273 };
-  data[3] = { x: init[0], y: init[1]+732 };
-  data[4] = { x: init[0]+273, y: init[1]+273 };
-  var centrx= ((4*init[0])+273+273)/4;
-  var centry= ((4*init[1])+732*2+273*2)/4;
-  data[0] = { x: centrx, y: centry };
+  data[1] = { x: init[0]-300, y: init[1]+300 };
+  data[2] = { x: init[0]-300, y: init[1]-300 };
+  data[3] = { x: init[0]+300, y: init[1]+300 };
+  data[4] = { x: init[0]+300, y: init[1]-300 };
+  data[0] = { x: init[0], y: init[1] };
+
 
   for (var i = 1; i <= number_charities; i++) {
+
+        if (data[i].y > data[0].y )
+        {
+          text_y= data[i].y+45;
+        }
+        else {
+          text_y= data[i].y-45;
+        }
+
+        if (data[i].x > data[0].x )
+        {
+          text_x= data[i].x-45;
+        }
+        else {
+          text_x= data[i].x+45;
+        }
   svg.append("text")
      .attr('id','textelement'+i)
-     .attr("y", data[i].y-20)//magic number here
-     .attr("x", data[i].x+20)
+     .attr("y", text_y)//magic number here
+     .attr("x", text_x)
      .attr('text-anchor', 'middle')
-     .attr('font-size',33 )
+     .attr('font-size',init_fontsize )
      .attr("class", "myLabel")//easy to style with CSS
      .text(char_names[i-1]);
 
 }
+}
+else if(number_charities==1){
+
+  data[0] = { x: init[0], y: init[1] };
+
+  svg.append("text")
+     .attr('id','textelementmain')
+     .attr("y", init[1]+100)//magic number here
+     .attr("x", init[0])
+     .attr('text-anchor', 'middle')
+     .attr('font-size',40 )
+     .attr('font-color','grey')
+     .attr("class", "myLabel")//easy to style with CSS
+     .text(char_names[0]+" Rs "+donateamount);
+
+     var circle = svg.selectAll('circle').data(data);
+     circle.enter().append('circle').attr('r', 0).transition().duration(500).attr('r', 30);
+     circle.attr('cx', function(d) { return d.x; })
+           .attr('cy', function(d) { return d.y; })
+           .style('fill','grey');
+
+
+}
+else if(number_charities>4){
+  console.log("Do nothing");
+  data[0] = { x: init[0], y: init[1] };
+
+  svg.append("text")
+     .attr('id','textelementmain')
+     .attr("y", init[1]+100)//magic number here
+     .attr("x", init[0])
+     .attr('text-anchor', 'middle')
+     .attr('font-size',40 )
+     .attr('font-color','grey')
+     .attr("class", "myLabel")//easy to style with CSS
+     .text("Select upto 4 charities only.");
 }
 }
 
@@ -195,27 +300,16 @@ updatePath();
 updateCircle();
 
 svg.on('mousedown', function(){
-    d3.selectAll('.centroid').attr('r',30);
     var m = d3.mouse(this);
-    if(!count){
-        if(!isDown){
-            data[0] = { x: m[0], y: m[1] };
-            updatePath();
             updateCircle();
-            console.log(data);
-        } else {
-            updateCircle();
-            console.log(data);
 
             d3.selectAll('.centroid').call(dragC);
             paths[0].call(dragP);
-            path1.call(dragP);
-            path2.call(dragP);
+            paths[1].call(dragP);
+            paths[2].call(dragP);
             count++;
-            console.log(data);
-        }
-    }
-    isDown = !isDown;
 });
 
 });
+
+}

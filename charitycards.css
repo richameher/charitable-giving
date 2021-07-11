@@ -1,74 +1,127 @@
 .card {
-  flex: 1 0 20%;
-  position: relative;
+  /* flex: 1 0 20%; */
+  display: inline-grid;
+  position:static;
   margin: .5em;
   padding: 2em;
   min-height: 4em;
   background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
- /* width: 50%; */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 3px solid white;
+  overflow: hidden;
+  height: 500px;
+  width: 300px;
+  opacity: 1;
+  align-items: center;
+  border-radius: 15px;
+  color: white;
+  float: left;
+  font-size: 18px;
+  font-weight: normal;
+  /* z-index: 1; */
 }
 
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+.card_desc{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-left: 0.25em;
+  overflow: hidden;
+  width: 600px;
+  height: 200px;
+  font-weight:300;
+  letter-spacing: 0.2em;
+}
+.card:hover{
+  /* width: 500px;
+  left:  0px; */
+  position: relative;
+  animation-name: example;
+  animation-duration: 0.6s;
+  height: 500px;
+  width: 600px;
+  color: black;
+  margin: auto;
+
+
 }
 
-img {
-  max-width: 80%;
-  height: auto;
-  padding: 10px;
+@keyframes example {
+  from {width: 200px;}
+  to {width: 600px;}
+}
+
+p{
+  /* position: absolute; */
+  float: left;
+  font-size: 20px;
+  justify-content: flex-end;
+}
+#row{
+  width: 150%;
+  height: 700px;
+  overflow-y: hidden;
+}
+.charityimg {
+  width: 260px;
+  height: 140px;
+  float: left;
+
 }
 .column {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
-}
-/* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
-.active {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid grey;
-}
-
-.inactive {
-  flex: 1 0 20%;
-  position: relative;
-  margin: .5em;
-  padding: 2em;
-  min-height: 4em;
-  background: white;
- box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
- border: 3px solid white;
-}
-
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
+  margin: 0.2em;
   display: inline-block;
-  font-size: 16px;
+  width: auto;
+  /* position: fixed; */
+  height:25%;
 }
-/* Add some padding inside the card container */
-/* .container {
-  padding: 2px 16px;
-} */
+.cardbutton_active {
+    width: 200px;
+    height: 100px;
+    border: 10px solid #fff;
+    transition: 0.3s;
+    font-size: 30px;
+    background-color: #e07b7b;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+
+}
+
+.cardbutton_inactive {
+  width: 220px;
+  height: 120px;
+  border: 10px solid #fff;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: #20639B;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  letter-spacing: 5px;
+
+}
+
+.cardbutton{
+  width: 220px;
+  height: 120px;
+  border: 10px solid #fff;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-size: 30px;
+  background-color: #20639B;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+}
+
+a[target="_blank"]:after {
+    float: right;
+    bottom: 0;
+    content: url("data/icons/external_link_icon.png");
+}
