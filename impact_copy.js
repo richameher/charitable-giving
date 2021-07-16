@@ -57,7 +57,7 @@ function loadimpact(){
   var DonateAmntperCharity= (donateamount/parseInt(Object.keys(active_charities).length));
 
   //console.log("Donation Amount per charity",donateamount,DonateAmntperCharity);
-  var impact_text="If 100 people donate as much as you do, then collectively, your contributions help provide ";
+  var desc="If 100 people donate as much as you do, then collectively, your contributions help provide ";
 
 
   var impacticons_cont = document.createElement("div");
@@ -96,7 +96,7 @@ function loadimpact(){
                       donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
                     }
                     else {
-                      donate_amnt_entities[sp_entity[i]]=no_ofentities;
+                      if (no_ofentities) donate_amnt_entities[sp_entity[i]]=no_ofentities;
                     }
 
 
@@ -106,20 +106,22 @@ function loadimpact(){
 
         for (var entkey in donate_amnt_entities) {
           if (donate_amnt_entities.hasOwnProperty(entkey) && parseInt(donate_amnt_entities[entkey]) >= 1) {
-              impact_text=impact_text+" "+ donate_amnt_entities[entkey];
+              desc=desc+" "+ donate_amnt_entities[entkey];
               if (parseInt(donate_amnt_entities[entkey]) >= 1 && entkey!='cash' && !entkey.endsWith("s")){
                   entkey=entkey+"s";
               }
               else if(entkey==='cash'){
                 entkey="Rs Cash Relief";
               }
-              impact_text=impact_text+" "+" "+entkey.split("_").join(" ")+",";
+              desc=desc+" "+" "+entkey.split("_").join(" ")+",";
 
           }
         }
       //console.log(donate_amnt_entities);
       var para=document.createElement("h3");
-      para.appendChild(document.createTextNode(replace_impact_str(impact_text)));
+      console.log(donate_amnt_entities,"Donating");
+      desc=replace_impact_str(desc,Object.keys(donate_amnt_entities).length,Object.keys(active_charities).length);
+      para.appendChild(document.createTextNode(desc));
 
       para.setAttribute('id',"MAIN");
 
@@ -155,7 +157,7 @@ function changeimpact(donationamt,char_id_map){
                      donate_amnt_entities[sp_entity[i]]=parseInt(donate_amnt_entities[sp_entity[i]])+no_ofentities;
                    }
                    else {
-                     donate_amnt_entities[sp_entity[i]]=no_ofentities;
+                     if (no_ofentities) donate_amnt_entities[sp_entity[i]]=no_ofentities;
                    }
                }
         }
@@ -175,12 +177,19 @@ function changeimpact(donationamt,char_id_map){
 
         }
       }
-      document.getElementById("MAIN").innerHTML=replace_impact_str(desc);
+      console.log(donate_amnt_entities,"Donating");
+      document.getElementById("MAIN").innerHTML=replace_impact_str(desc,Object.keys(donate_amnt_entities).length,Object.keys(active_charities).length);
     });
 
 }
 
-function replace_impact_str(replace_str)
+function replace_impact_str(replace_str,len,acv_len)
 {
-  return replace_str.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")+" for COVID-19 Relief.";
+  console.log("Donate amount entities",len);
+  if (acv_len>1 && len>1) return replace_str.replace(/,\s*$/, "").replace(/(\b,\s\b)(?!.*[\r\n]*.*\1)/, " and ")+" for COVID-19 Relief.";
+  else if(acv_len>1 && len==1){
+    return replace_str+" for COVID-19 Relief.";
+  }
+  else
+    return "Select more than one charity or Enter more amount to see the impact";
 }

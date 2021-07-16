@@ -1,10 +1,9 @@
 body{
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(253 254 255);
-    height: 102vh;
+    height: 100%;
     font-weight:300;
     width: 100%;
-    overflow-y: hidden;
     overflow-x: hidden;
     /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
@@ -132,8 +131,6 @@ div{
   transition: 0.3s;
   width: 30%;
   height:100%;
-  position: absolute;
-  z-index: 9;
   }
 #polygon{
   /* margin-right: 1%; */

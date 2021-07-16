@@ -1,23 +1,35 @@
-CampaignID,filename
-1,img_meal2_Charity1
-1,img_meal1_Charity1
-3,img_medical_Charity3
-3,img_oxygen_Charity3
-3,img_care_Charity3
-5,img_meal_Charity5
-5,img_grocery_Charity5
-5,img_grocery1_Charity5
-6,img_meal_Charity6
-6,img_poor_Charity6
-7,img_grocery_Charity7
-7,img_medical_Charity7
-7,img_grocery1_Charity7
-8,img_OxygCyl_Charity8
-8,img_CovidCareCenter_Charity8
-8,img_CashRelief_Charity8
-9,img_grocery_charity9
-9,img_grocery1_Charity9
-9,img_medical_charity9
-11,img_OxygenConcent_Charity11
-13,img_CookedMeal_Charity13
-13,img_servedmeal_Charity13
+CampaignID,filename,KeyWords,LinktoImage,Description
+1,img_meal2_Charity1.png,Cooked_meal,https://cfstatic.giveindia.org/8a22545d-7927-4577-84c8-b402de4c5f5a.jpg,woman handing out food
+1,img_meal1_Charity1.png,cooked_meal,"https://cfstatic.giveindia.org/e9644a35-e3c6-49bb-9b3a-9bd9f8147228.jpg
+",image of cooked meals
+3,img_medical_Charity3.png,Oxygen_concentrator,https://www.instagram.com/p/CQynATxsuFq/,man handig out oxygen cylinder
+3,img_oxygen_Charity3.png,Oxygen_concentrator,https://www.instagram.com/p/CQJd-znM-jZ/,man using oxygen concentrator
+3,img_care_Charity3.png,Covid_carecenter,https://www.instagram.com/p/COr3wnEsuQZ/,man taking care of a patient
+5,img_meal_Charity5.png,Cooked_meal,https://www.akshayapatra.org/covid-relief-services,people receiving grocery kit and food
+5,img_grocery_Charity5.png,Grocery_kit,https://www.akshayapatra.org/covid-relief-services,receiving grocery kit
+5,img_grocery1_Charity5.png,grocery_kit,https://www.akshayapatra.org/covid-relief-services,receiving a box kit
+6,img_meal_Charity6.png,cooked_meal,https://lh4.googleusercontent.com/vlUOh7_eCLKONxEJKz7O2QcOYv8t007a5e5U_8MD2my6qlINsIy--OIxUDHwsOktebp8OSidOAlAb3tu8xjgt4Fy3Wu427YA-HaLwBaxkeRxKfBZABZ-sS1Yv7lKmfhF=w1280,girl holding a food
+6,img_poor_Charity6.jpeg,Poor,"https://lh6.googleusercontent.com/DVmZpWcKHMuprsjzvqwVbHi6Ei2k08THjfHyEmYOnJ1A4xRRW84Ng1Wppedy3JZwWKUoXXLOriXcG4RfFiHbqZcJU8frQdFAV5RZ5ciBa9u2Ml1D4HT5IugQy4DiwcJZXw=w1280
+",family holding grocery kit
+7,img_grocery_Charity7.png,grocery_kit,https://give2asia.org/covid-19-pandemic-response-india/,guy gving rice to an old lady
+7,img_medical_Charity7.png,"medical_kit
+ppe_kit",https://twitter.com/OxfamIndia/status/1409435129777295362/photo/3,people with medical and ppe kits
+7,img_grocery1_Charity7.png,grocery_kit,https://twitter.com/OxfamIndia/status/1407301592605368320/photo/1,man with rice on a bike
+8,img_OxygCyl_Charity8.png,Oxygen_cylinder,https://covid.giveindia.org/oxygen/,2 man one is using the cylinder other is carrying it
+9,img_grocery_charity8.png,grocery_kit,https://covid.giveindia.org/food/ ,people receiving grocery kit and food
+10,img_CovidCareCenter_Charity8.png,Covid_carecenter,https://uofi.box.com/s/b7y7arwtv3dehntd58g5zwr8c93m5yxq,man setting up the center
+11,img_CashRelief_Charity8.png,Cash_relief,https://covid.giveindia.org/cashrelief/,family of the deceased crying
+12,img_grocery_charity9.png,grocery_kit,http://yeinudaan.org/covid-19/,women receiving grocery kit
+12,img_grocery1_Charity9.png,grocery_kit,http://yeinudaan.org/covid-19/,man handing out grocery kit
+12,img_medical_charity9.png,medical_kit,https://www.instagram.com/p/CPc4yefjmTY/,man handing out supply
+14,img_OxygenConcent_Charity11.png,Oxygen_concentrator,https://uofi.box.com/s/h94t91o60jt6dnj1b3l684pnwp80rc40,pic of oxygen concentrator
+14,img_oxygen_charity11.png,Oxygen_concentrator,https://www.instagram.com/p/COiUpJyAgHn/,patient being treated with an oxygen mask
+15,img_food_charity12.png,Cooked_meal,https://www.instagram.com/p/CISsFYtJywq/,children holding hot food
+15,img_food1_charity12.png,Cooked_meal,https://www.instagram.com/rotibankfdn/,people serving food
+15,img_food2_charity12.png,Cooked_meal,https://www.instagram.com/p/Bzp97agFLp3/,people reveiving food
+16,img_CookedMeal_Charity13.png,Cooked_meal,https://www.instagram.com/p/CQ8nz8-sUdx/,children eating
+16,img_servedmeal_Charity13.png,Cooked_meal,https://www.instagram.com/p/CO-lGQmhCfV/,serving food
+17,img_mask_charity14.png,medical_kit,https://www.instagram.com/p/CPX8dT_HTzO/,mask distribution
+17,img_medical_charity14.png,medical_kit,https://www.instagram.com/p/CO4713knNFv/,medical kit distribution
+13,img_oxygen2_Charity13.png,Oxygen_concentrator,https://indiao2.org/get-involved,medical kit distribution
+13,img_oxygen_Charity13.png,Oxygen_concentrator,https://indiao2.org/get-involved,medical kit distribution

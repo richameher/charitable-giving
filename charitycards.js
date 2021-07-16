@@ -19,8 +19,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     // var name = document.createTextNode(newdata[i]["Name"].substr(0,15));
 
-    var last_updated = document.createTextNode("Last Updated on "+newdata[i]["info_last_updated"]);
-    var incpt_date = document.createTextNode(" | Started "+newdata[i]["Inception_Date"]+" ago");
+    var last_updated = document.createTextNode(" | Active as of "+newdata[i]["info_last_updated"]);
+    var incpt_date = document.createTextNode("Founded "+newdata[i]["Inception_Date"]+" ago");
 
     let getcharityimglink = ("data/Logos/img_"+newdata[i]["imgid"]+".png");
     var image = document.createElement("IMG");
@@ -61,8 +61,8 @@ d3.csv("data/charities_list_clean.csv", function(dataset) {
 
     card.appendChild(a);
     card.appendChild(image);
-    card.appendChild(last_updated);
     card.appendChild(incpt_date);
+    card.appendChild(last_updated);
     card_desc.appendChild(p);
 
     card.append(card_desc);

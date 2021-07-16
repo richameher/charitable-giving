@@ -159,7 +159,7 @@ if (number_charities==3) {
   data[3] = { x: init[0]+300, y: init[1]-300 };
   data[1] = { x: init[0], y: init[1]+300 };
   data[2] = { x: init[0]-300, y: init[1]-300 };
-  data[0] = { x: init[0], y: init[1] };
+  data[0] = { x: init[0], y: init[1]-75 };
 
 for (var i = 1; i <= number_charities; i++) {
   if (data[i].y > data[0].y )

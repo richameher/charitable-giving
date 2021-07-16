@@ -47,6 +47,7 @@ function initial_keywords(ratios,char_id_map){
   var charityidTocampid=JSON.parse(sessionStorage.getItem("charityidTocampid"));
 
 d3.csv("data/keyword_images.csv", function(dataset) {
+
   for (var key in active_charities) {
       if (active_charities.hasOwnProperty(key)) {
         for (i = 0; i < dataset.length; i++) {
@@ -64,7 +65,7 @@ d3.csv("data/keyword_images.csv", function(dataset) {
                     .attr('height', 100)
                     .attr("class","keywordImg")
                     .style("z-index",1)
-                    .attr("xlink:href", "data/kw_imgs/"+dataset[i]["filename"].split(".")[0]+".png")
+                    .attr("xlink:href", "data/kw_imgs/"+dataset[i]["filename"])
                     .attr('id',elid);
               }
               else{
