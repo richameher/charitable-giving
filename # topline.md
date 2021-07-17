@@ -1,0 +1,2 @@
+# main
+Donating to support Indian organizations to address covid challenges is fraught: friends send appeals; we notice celebrity endorsements. But we want, while we are in the midst of the crisis, is to understand the impact of our donation. This website aims to help you create a portfolio of charitable work organizations, understand the impact of your charity portfolio on covid response in India, and then make a donation.
