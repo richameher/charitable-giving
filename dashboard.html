@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="charitycards.css">
+<link rel="stylesheet" href="index.css">
+<script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="donatecharities.js"></script>
+<script>
+function openFAQ(){
+  window.open("faq.html", "_blank");
+}
+
+function openAbt(){
+  window.open("About.html", "_blank");
+}
+function openFeedback(){
+  window.open("feedback.html", "_blank");
+}
+</script>
+<head>
+  <h1>Decide to Donate</h1>
+<button id="header_button" onclick=openAbt()>
+  About us
+  </button>
+  <button id="header_button" onclick=openFAQ()>
+  FAQ
+  </button>
+  <button id="header_button" onclick=openFeedback()>
+  Help us Improve!
+  </button>
+</head>
+<body>
+<div class='container'>
+  <div id="matrix">
+    <div id="input_div">
+    <h2>Step 1. Donate Rs</h2><input type="number" min="100" id="amount" name="amount" value=1000 placeholder="Enter Amount" step="100" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+    </div>
+    <h2 class="step">Step 2. Choose Region and Cause</h2></div><div id='cards'><h2 class="step">Step 3. Pick 2 to 4 charities</h2><div id="row"></div></div></div>
+</div>
+<div class='container-vertical'>
+  <div id='polygon'><h2 class="step">Step 4. Move the Red Dot to vary the donation amount distribution</h2></div><div id='wordcloud'><h2>See how your contribution matters!</h2></div><div id='impactdiag'><h2>See the Collective Impact!</h2><div id="improw"></div><button id="donatebutton" onclick="donatecharities()">Let's Donate!</button> <p>(Check your browser settings if the tabs do not open)</p></div>
+</div>
+</body>
+
+
+
+<script src="wordcloud_charities_images.js"></script>
+<script src="movable-centroid.js"></script>
+<script src="impact_copy.js"></script>
+<script src="charitycards.js"></script>
+<script src="index.js"></script>
+<script src="input.js"></script>

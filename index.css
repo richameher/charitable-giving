@@ -19,6 +19,12 @@ h1{
   text-align: center;
   /* width: 2800px;s */
 }
+#tutorial{
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+}
 
 #header_button{
   width: 33.2%;
@@ -230,7 +236,7 @@ input[type=number]{
   margin: 1em;
 }
 
-#donatebutton {
+#donatebutton,#portfolio {
     transform: translateX(6%);
     transform: translateY(6%);
     width: 300px;
@@ -246,6 +252,14 @@ input[type=number]{
     border-radius: 20px;
 }
 
+#portfolio{
+  width: 500px;
+  margin-left: 20em;
+}
+#portfolio:hover{
+  border: 2px solid #fff;
+  background: rgb(90 108 136);
+}
 
 #donatebutton:hover {
   border: 2px solid #fff;
