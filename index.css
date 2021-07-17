@@ -256,12 +256,18 @@ input[type=number]{
 
 .keywordImg{
   border-radius: 50px;
+  width: 12%;
+  position: relative;
+  height: 12%;
 }
 
 .keywordImg:hover{
+  /* transform-origin: center; */
+  /* transform: scale(3.2); */
   width: 40%;
   height: auto;
-  transition: 0.5s;
+
+   transition: 1.5s;
   z-index: 3;
 }
 

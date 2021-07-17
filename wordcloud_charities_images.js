@@ -57,18 +57,23 @@ d3.csv("data/keyword_images.csv", function(dataset) {
               if (!document.getElementById(elid))
               {
                 // var imgs = svgcommon.selectAll("image").data([0]);
+                    console.log(elid);
                     grid
+                    // .append("div")
                     .append("svg:image")
                     .attr('x', random(1))
                     .attr('y',random(0))
-                    .attr('width', 120)
-                    .attr('height', 100)
+                    .attr('width', "12%")
+                    .attr('height', "10%")
                     .attr("class","keywordImg")
-                    .style("z-index",1)
+                    .style("z-index",-1)
+                    // .attr("transform", "scale(1.2)")
                     .attr("xlink:href", "data/kw_imgs/"+dataset[i]["filename"])
                     .attr('id',elid);
+
               }
               else{
+
                 svgcommon
                 .selectAll('#'+elid)
                 .attr('width', 420*ratios[char_id_map.indexOf(key)])
@@ -86,3 +91,36 @@ d3.csv("data/keyword_images.csv", function(dataset) {
 
   });
 }
+function dragstarted(selection) {
+  console.log(selection);
+  // selection.attr("transform", "scale(1.2)");
+  // selection.attr("width", "40%");
+  // selection.attr("height", "auto");
+  selection.each(function() {
+  this.parentNode.appendChild(this);
+});
+}
+
+
+
+
+
+
+// imgss = d3.select("#wordcloud")//.selectAll("#image")//d3.selectAll("div")
+// console.log("ready");
+// imgss.on("mouseover",function() {
+//   console.log("this item is selected",d3.select(this));
+// })
+document.addEventListener('mousemove', (event) => {
+	// console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`);
+  alpha = document.elementFromPoint(event.clientX,event.clientY)
+  // console.log(alpha);
+  console.log(alpha);
+  d3.selectAll("div").on("mouseover", function() {
+      d3.select('#'+alpha.id)
+    .call(dragstarted)
+});
+
+    // .moveToFront()
+
+  })
