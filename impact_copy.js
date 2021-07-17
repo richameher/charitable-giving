@@ -191,5 +191,5 @@ function replace_impact_str(replace_str,len,acv_len)
     return replace_str+" for COVID-19 Relief.";
   }
   else
-    return "Select more than one charity or Enter more amount to see the impact";
+    return "Select more than one charity or increase the amount to see the impact";
 }
