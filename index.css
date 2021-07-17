@@ -12,7 +12,7 @@ h1{
   font-size: 90px;
   font-family: 'Montserrat', sans-serif;
   font-weight:300;
-  height: 60px;
+  height: 40%;
   color: #20639B;
   text-align: center;
 }
@@ -40,7 +40,7 @@ p{
 h2{
   font-size: 35px;
   font-family: 'Montserrat', sans-serif;
-  margin: 20px;
+  margin: auto;
   font-weight: 300;
   color: rgb(90 108 136);
   transition: 0.2s;
