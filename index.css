@@ -47,12 +47,12 @@ h2{
   transition: 0.2s;
 }
 #portfolio {
-    width: 50%;
-    height: 100%;
+    width: 50vh;
+    height: 10vh;
     border: 1px solid rgb(90 108 136);
     /* opacity: 0.6; */
     transition: 0.3s;
-    font-size: 40px;
+    font-size: 2vw;
     background: rgb(90 108 136);
     font-family: 'Montserrat', sans-serif;
     color: white;
