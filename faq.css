@@ -1,0 +1,44 @@
+body{
+    /* font-family: 'Noto Sans HK', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(253 254 255);
+    /* height: 100%;
+    font-weight:300; */
+    text-align: justify;
+    text-justify: inter-word;
+    font-weight: lighter;
+    /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
+}
+h1{
+  margin-top:1.2em;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:300;
+  height: 60px;
+  color: #20639B;
+  text-align: center;
+}
+
+h2{
+  margin: 0.5em;
+  height: 30px;
+  color: #20639B;
+  font-weight:300;
+}
+
+p{
+  font-weight:300;
+  margin-left: 2em;
+  margin-right: 5em;
+  margin-bottom: 2em;
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#FeedForm{
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

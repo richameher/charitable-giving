@@ -1,0 +1,13 @@
+Entity,Cost
+ambulance,15000
+oxygen_concentrator_machine,57000
+oxygen_plant,3000000
+oxygen_cylinders,20000
+ration_kit,500
+beds,16000
+grocery_kit,500
+cooked_meal,30
+cash,1
+care_center,5000000
+HNFC,15000
+PPE_kit,4000
