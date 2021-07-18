@@ -17,20 +17,20 @@ h1{
 #tutorial{
 
  /* display: block; */
- margin-left: auto;
- margin-right: auto;
- width: 50%;
+ /* margin-left: auto;
+ margin-right: auto; */
+ /* width: 100%; */
 }
 
 img{
-  max-width: 100%;
-  width: auto;
-  height: auto;
+   max-width: 100%;
+  /* width: auto;
+  height: auto; */
 }
 
 #webdesc{
   margin-top: 1%;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 300;
   margin-left: 10%;
   margin-right: 10%;
@@ -42,35 +42,32 @@ p{
 h2{
   font-size: 35px;
   font-family: 'Montserrat', sans-serif;
-  margin: auto;
+  /* margin: auto; */
   font-weight: 300;
   color: rgb(90 108 136);
-  transition: 0.2s;
+  /* transition: 0.2s; */
 }
 
 /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
-@media screen and (min-width: 601px) {
+/* @media screen and (min-width: 601px) {
   #portfolio {
     font-size: 40px;
     width: 50vw;
     height: 10vh;
   }
-}
+} */
 
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   #portfolio  {
     font-size: 20px;
     width: 40vw;
     height: 10vh;
   }
-}
+} */
 #portfolio {
-    margin:auto;
-    /* border: 1px solid rgb(90 108 136); */
-    /* opacity: 0.6; */
-    margin-left: 20%;
-    transition: 0.3s;
+    padding: 20px 20px;
+    /* transition: 0.3s; */
     /* font-size: 20%; */
     background: rgb(90 108 136);
     font-family: 'Montserrat', sans-serif;
@@ -80,5 +77,5 @@ h2{
 }
 
 #portfolio:hover{
-  background: rgb(90 108 136);
+  background: rgb(90 108 136 0.4);
 }
