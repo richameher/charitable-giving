@@ -1,20 +1,84 @@
 body{
-    font-family: Arial;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(253 254 255);
+    font-weight:300;
+    overflow-x: hidden;
+    /* box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); */
 }
 h1{
-    color: #0099FF;
+  margin-top: 0.5em;
+  font-size: 90px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:300;
+  height: 40%;
+  color: #20639B;
+  text-align: center;
+}
+#tutorial{
+
+ /* display: block; */
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+}
+
+img{
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+#webdesc{
+  margin-top: 1%;
+  font-size: 30px;
+  font-weight: 300;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 p{
-    color: #000000;
-}
-tr{
-    background-color: #FF8448;
+  margin-left: 20%;
 
 }
-td{
-    background-color: #0099FF;
-
+h2{
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+  margin: auto;
+  font-weight: 300;
+  color: rgb(90 108 136);
+  transition: 0.2s;
 }
-table{
-    color: #000;
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  #portfolio {
+    font-size: 40px;
+    width: 50vw;
+    height: 10vh;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  #portfolio  {
+    font-size: 20px;
+    width: 40vw;
+    height: 10vh;
+  }
+}
+#portfolio {
+    margin:auto;
+    /* border: 1px solid rgb(90 108 136); */
+    /* opacity: 0.6; */
+    margin-left: 20%;
+    transition: 0.3s;
+    /* font-size: 20%; */
+    background: rgb(90 108 136);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#portfolio:hover{
+  background: rgb(90 108 136);
 }
