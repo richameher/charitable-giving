@@ -11,8 +11,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script src="donatecharities.js"></script>
 <script>
+function detectMob(){
+  //1536 x 2048 - IPAD and mobile
+  return((window.innerWidth <=800) && (window.innerHeight)<=600)? 1:0;
+}
 function dashboard(){
-  window.open("dashboard.html", "_blank");
+  if(!detectMob())
+    window.open("dashboard.html", "_self");
+  else {
+    window.open("mobile.html", "_self");
+  }
 }
 </script>
 <head>
